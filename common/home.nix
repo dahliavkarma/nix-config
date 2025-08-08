@@ -1,8 +1,4 @@
 {  
-  stateVersion,
-  username,
-  inputs, 
-  config, 
   pkgs,
   ...
 }: {

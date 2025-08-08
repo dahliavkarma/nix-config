@@ -1,6 +1,5 @@
 {
   config, 
-  lib,  
   pkgs, 
   ...
 }: { # camera is now on by default, thx wj

@@ -3,8 +3,6 @@
   stateVersion,
   username,
   inputs, 
-  config, 
-  lib, 
   ...
 }: { 
 

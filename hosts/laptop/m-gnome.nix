@@ -1,5 +1,4 @@
 { 
-  config, 
   pkgs, 
   ...
 }: 
@@ -55,7 +54,7 @@
     # seahorse # secret management in gnome-keyring
     # sushi # gnome quick previewer
     # totem # gnome videos, tied to thumbnail generation
-    # nixos-background-info # ???
+    nixos-background-info # ???
   ]);
   environment.systemPackages = with pkgs; [
     gnome-tweaks
