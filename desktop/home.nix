@@ -4,10 +4,11 @@
   ...
 }: {
   imports = [
+    ./mh-dev.nix
     ./mh-looks.nix
     ./mh-shell.nix
     ./mh-ocr.nix
-    ./mh-work.nix
+    # ./mh-work.nix
   ];
   home.packages = with pkgs; [
     anki
