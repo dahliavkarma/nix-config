@@ -1,0 +1,78 @@
+{
+  inputs, 
+  stateVersion, 
+  system,
+  username, 
+  pkgs,
+  ...
+}: {
+
+  # system utilities, mostly tools for the shell
+  boot.kernel.sysctl."kernel.sysrq" = 1;
+  console = {
+    font = "Lat2-Terminus16";
+    useXkbConfig = true;
+  };
+  environment.enableAllTerminfo = true; # for ssh usage
+  environment.systemPackages = with pkgs; [
+    bat
+    exfat
+    eza
+    inxi
+    nh
+    nixd
+    nixfmt-rfc-style
+    p7zip
+    pciutils # lspci
+    psmisc # fuser, killall, pstree
+    ripgrep-all
+    tldr
+    unzip
+    usbutils # lsusb
+    vim
+    wget
+  ];
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+  };
+  users.defaultUserShell = pkgs.zsh;
+  environment.pathsToLink = [ "/share/zsh" ]; # to get completion for system packages (e.g. systemd).
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # for 
+  programs.starship.enable = true;
+  environment.sessionVariables.FLAKE = "/home/${username}/nix-config";
+  environment.sessionVariables.NH_FLAKE = "/home/${username}/nix-config";
+
+  # auto system tasks
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+  };
+  system = { 
+    autoUpgrade = {
+      enable =  true;
+      flake = inputs.self.outPath;
+      flags = [
+        "--update-input"
+        "nixpkgs"
+        "-L" # print build logs
+      ];
+      dates = "20:00";
+      randomizedDelaySec = "45min";
+    };
+  };
+
+  # static settings
+  hardware.enableAllFirmware = true; # enable needed firmware regardless of license
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.hostPlatform = system;
+  system.stateVersion = stateVersion;
+
+}

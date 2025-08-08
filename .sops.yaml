@@ -1,0 +1,13 @@
+keys: 
+  - &users: 
+    - &standalone age1fgj749mqnwqx2w4hg8j83svn3gdkf5zwzuftq98w3uj7sg5wg4aqc2t394
+  - &hosts: # derived from the ed25519 host public key in /etc/ssh
+    - &home-desktop age19ktz9a3tgwkdmqcpv6l92uv03qvts79ttg4vsfmgp5yhzm4nksnqv3d0nh
+    - &homelab age1guwxs7g4jgs7ypf70mjrse53ex8nrpl97569uhfed8ta4q7c5cdssxqrpg
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age: 
+      - *standalone
+      - *home-desktop
+      - *homelab
