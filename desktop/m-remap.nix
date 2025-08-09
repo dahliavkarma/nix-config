@@ -1,7 +1,8 @@
 {
   username,
   ...
-}: {
+}:
+{
 
   services.xremap.enable = true;
   # to run xremap as a user
@@ -10,22 +11,31 @@
     uinput.members = [ username ];
     input.members = [ username ];
   };
-  
+
   # mode
-  services.xremap = { # needs to be enabled manually on each machine
+  services.xremap = {
+    # needs to be enabled manually on each machine
     serviceMode = "user";
     userName = username;
   };
 
   # options
-  services.xremap = { # enable feature flags for each machine
+  services.xremap = {
+    # enable feature flags for each machine
     # debug = true;
     watch = true;
+    mouse = true;
+  };
+  systemd.user.services.xremap = {
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
   };
 
   # config
   services.xremap.config = {
-    modmap = [ 
+    modmap = [
       {
         name = "caps lock to zenkaku/hankaku";
         remap = {
