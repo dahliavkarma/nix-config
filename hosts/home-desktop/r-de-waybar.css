@@ -3,7 +3,8 @@
 * {
   font-family: 'Iosevka NF', 'Sarasa Mono SC', monospace;
   font-size: 14px;
-  color: #a89984; /* grey2 */
+  color: #ddc7a1;
+  /* grey2 */
   transition-duration: 0.5s;
   border: none;
 }
@@ -12,13 +13,17 @@ window {
   background-color: transparent;
 }
 
-window > box {
-  border: 1px solid #3c3836; /* bg4 */
+window>box {
+  border: 1px solid #3c3836;
+  /* bg4 */
   border-radius: 4px;
-  background-color: #141617; /* bg_dim */
+  background-color: #141617;
+  /* bg_dim */
 }
 
-.modules-left, .modules-center, .modules-right {
+.modules-left,
+.modules-center,
+.modules-right {
   padding: 0 7px;
 }
 
