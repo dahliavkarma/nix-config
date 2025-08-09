@@ -5,6 +5,11 @@
 
     # basics
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,7 +19,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
     xremap-flake.url = "github:xremap/nix-flake";
@@ -25,22 +30,30 @@
 
   };
 
-  outputs = inputs: 
-  let 
-    hosts = { # don't forget ssh and ssh-agent settings for each machine
-      laptop = {
-        stateVersion = "24.11"; # DO NOT ALTER!
-       };
-      home-desktop = {
-        stateVersion = "24.11"; # DO NOT ALTER!
+  outputs =
+    inputs:
+    let
+      hosts = {
+        # don't forget ssh and ssh-agent settings for each machine
+        laptop = {
+          system = "x86_64-linux";
+          stateVersion = "24.11"; # DO NOT ALTER!
+        };
+        home-desktop = {
+          system = "x86_64-linux";
+          stateVersion = "24.11"; # DO NOT ALTER!
+        };
+        homelab = {
+          system = "x86_64-linux";
+          stateVersion = "24.11"; # DO NOT ALTER!
+        };
+        work-laptop = {
+          system = "aarch64-darwin";
+        };
       };
-      homelab = {
-        stateVersion = "24.11"; # DO NOT ALTER!
-      };
-    };
-  in 
+    in
     import ./hosts {
       inherit inputs;
-      inherit hosts; 
+      inherit hosts;
     };
 }
