@@ -2,7 +2,6 @@
   ...
 }:
 {
-
   stylix = {
     enable = true;
     targets = {

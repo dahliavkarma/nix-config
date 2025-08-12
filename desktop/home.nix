@@ -32,7 +32,7 @@
       thunderbird
       tor-browser
       tuxguitar
-      vscodium # remember to install Nix IDE, Catppuccin Icons, and the vsix file
+      vscodium # remember to install Nix IDE and Catppuccin Icons
       yt-dlp
       zotero
     ]
@@ -42,7 +42,6 @@
   programs.chromium = {
     # since chrome is needed from time to time
     enable = true;
-    package = pkgs.ungoogled-chromium;
     extensions = [
       # doesn't work just yet
       "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
