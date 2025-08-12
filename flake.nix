@@ -47,7 +47,7 @@
           system = "x86_64-linux";
           stateVersion = "24.11"; # DO NOT ALTER!
         };
-        work-laptop = {
+        work-laptop-placeholder = {
           system = "aarch64-darwin";
         };
       };

@@ -1,12 +1,13 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
 
   programs.zsh.zsh-abbr.abbreviations = {
     hyprland = "uwsm start hyprland-uwsm.desktop";
   };
-  
+
   home.packages = with pkgs; [
     gnome-text-editor
     peazip
@@ -28,7 +29,8 @@
     };
   };
 
-  services.udiskie = { # udisks2 dbus enabled in m-de-components
+  services.udiskie = {
+    # udisks2 dbus enabled in m-de-components
     enable = true;
   };
 

@@ -1,8 +1,9 @@
 {
-  username, 
+  username,
   ...
-}: {
-  
+}:
+{
+
   virtualisation.docker = {
     enable = true;
     # daemon.settings =  = {

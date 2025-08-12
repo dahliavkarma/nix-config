@@ -1,9 +1,10 @@
 {
-  # username, 
-  # config, 
-  pkgs, 
+  # username,
+  # config,
+  pkgs,
   ...
-}: {
+}:
+{
 
   # enable the X11 windowing system, needed for wayland too
   services.xserver = {
@@ -12,7 +13,8 @@
       xterm
     ];
   };
-  environment.systemPackages = with pkgs; [ # some utilities
+  environment.systemPackages = with pkgs; [
+    # some utilities
     xorg.xev
     xorg.xinit
     xorg.xrandr
@@ -40,28 +42,33 @@
     jack.enable = true;
   };
 
-  security.sudo = { # enable passwordless power controls
-    extraRules = [{
-      commands = [
-        {
-          command = "${pkgs.systemd}/bin/systemctl suspend";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "${pkgs.systemd}/bin/reboot";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "${pkgs.systemd}/bin/poweroff";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-      groups = [ "wheel" ];
-    }];
+  security.sudo = {
+    # enable passwordless power controls
+    extraRules = [
+      {
+        commands = [
+          {
+            command = "${pkgs.systemd}/bin/systemctl suspend";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "${pkgs.systemd}/bin/reboot";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "${pkgs.systemd}/bin/poweroff";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+        groups = [ "wheel" ];
+      }
+    ];
     extraConfig = with pkgs; ''
-      Defaults:picloud secure_path="${lib.makeBinPath [
-        systemd
-      ]}:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+      Defaults:picloud secure_path="${
+        lib.makeBinPath [
+          systemd
+        ]
+      }:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
     '';
   };
 

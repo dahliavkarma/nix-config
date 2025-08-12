@@ -1,12 +1,13 @@
 {
   config,
   ...
-}: {
+}:
+{
 
-  users.groups.webdav = {};
+  users.groups.webdav = { };
   users.users.webdav = {
     isSystemUser = true;
-    group = "webdav"; 
+    group = "webdav";
   };
   sops.secrets = {
     ### webdav-server-rs
@@ -16,10 +17,13 @@
   };
 
   services.webdav-server-rs = {
-    enable = true; 
+    enable = true;
     # debug = true;
     settings = {
-      server.listen = [ "0.0.0.0:4918" "[::]:4918" ];
+      server.listen = [
+        "0.0.0.0:4918"
+        "[::]:4918"
+      ];
       accounts = {
         auth-type = "htpasswd.default";
         acct-type = "unix";
@@ -38,12 +42,11 @@
           case-insensitive = "true"; # case insentive lookups; t/f/"ms"
         }
       ];
-    }
-    ;
+    };
   };
 
   services.nginx.virtualHosts."dahliavkarma.com".locations."/webdav" = {
     proxyPass = "http://localhost:4918";
   };
-  
+
 }

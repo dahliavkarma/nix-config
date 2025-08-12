@@ -1,7 +1,8 @@
 {
-  config, 
+  config,
   ...
-}: {
+}:
+{
   services.xray = {
     enable = true;
     settingsFile = config.sops.secrets."server/xray/config".path;

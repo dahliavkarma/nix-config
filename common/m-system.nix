@@ -1,11 +1,12 @@
 {
-  inputs, 
-  stateVersion, 
+  inputs,
+  stateVersion,
   system,
-  username, 
+  username,
   pkgs,
   ...
-}: {
+}:
+{
 
   # system utilities, mostly tools for the shell
   boot.kernel.sysctl."kernel.sysrq" = 1;
@@ -40,7 +41,7 @@
   };
   users.defaultUserShell = pkgs.zsh;
   environment.pathsToLink = [ "/share/zsh" ]; # to get completion for system packages (e.g. systemd).
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # for 
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # for
   programs.starship.enable = true;
   environment.sessionVariables.FLAKE = "/home/${username}/nix-config";
   environment.sessionVariables.NH_FLAKE = "/home/${username}/nix-config";
@@ -54,9 +55,9 @@
       options = "--delete-older-than 14d";
     };
   };
-  system = { 
+  system = {
     autoUpgrade = {
-      enable =  true;
+      enable = true;
       flake = inputs.self.outPath;
       flags = [
         "--update-input"
@@ -70,7 +71,10 @@
 
   # static settings
   hardware.enableAllFirmware = true; # enable needed firmware regardless of license
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = system;
   system.stateVersion = stateVersion;

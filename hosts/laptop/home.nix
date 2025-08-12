@@ -1,6 +1,7 @@
 {
   ...
-}: {
+}:
+{
   imports = [
     ../../common/home.nix
     ../../desktop/home.nix

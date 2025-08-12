@@ -1,8 +1,10 @@
 {
-  config, 
-  pkgs, 
+  config,
+  pkgs,
   ...
-}: { # camera is now on by default, thx wj
+}:
+{
+  # camera is now on by default, thx wj
 
   # auto-rorate
   hardware.sensor.iio.enable = true;

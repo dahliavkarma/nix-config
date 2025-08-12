@@ -1,12 +1,12 @@
-{ 
-  lib, 
-  pkgs, 
+{
+  lib,
+  pkgs,
   ...
-}: 
-let 
+}:
+let
   ext = pkgs.gnomeExtensions;
-in 
-{ 
+in
+{
   home.packages = with pkgs; [
     libgtop # for gnome vitals
     lm_sensors # for gnome vitals
@@ -75,7 +75,7 @@ in
       "org/gnome/shell/extensions/color-picker" = {
         enable-notify = true;
         enable-shortcut = true;
-        color-picker-shortcut = ["<Super><Shift>c"];
+        color-picker-shortcut = [ "<Super><Shift>c" ];
         enable-systray = true;
       };
       "org/gnome/shell/extensions/dash-to-dock" = {
@@ -86,7 +86,10 @@ in
         middle-click-action = "quit";
       };
       "org/gnome/shell/extensions/vitals" = {
-        hot-sensors = [ "_memory_usage_" "__temperature_avg__" ];
+        hot-sensors = [
+          "_memory_usage_"
+          "__temperature_avg__"
+        ];
       };
 
       ### APPEARANCE ###
@@ -105,7 +108,13 @@ in
       #   terminal = "exec ${commonSettings.default.terminal}";
       # };
       "org/gnome/shell" = {
-        favorite-apps = [ "org.gnome.Nautilus.desktop" "kitty.desktop" "codium.desktop" "anki.desktop" "zen.desktop54000" ];
+        favorite-apps = [
+          "org.gnome.Nautilus.desktop"
+          "kitty.desktop"
+          "codium.desktop"
+          "anki.desktop"
+          "zen.desktop54000"
+        ];
       };
 
       ### WINDOW BEHAVIOUR ###
@@ -114,7 +123,7 @@ in
         focus-mode = "click"; # click or sloppy
         auto-raise = "true";
       };
-      "org/gnome/mutter" = { 
+      "org/gnome/mutter" = {
         edge-tiling = true;
       };
 
@@ -123,15 +132,21 @@ in
         xkb-options = [ "compose:ralt" ];
       };
       "org/gnome/desktop/wm/keybindings" = {
-        switch-windows = [ "<Ctrl>Tab" "<Super>Tab"];
-        switch-windows-backward = [ "<Shift><Ctrl>Tab" "<Shift><Super>Tab"];
+        switch-windows = [
+          "<Ctrl>Tab"
+          "<Super>Tab"
+        ];
+        switch-windows-backward = [
+          "<Shift><Ctrl>Tab"
+          "<Shift><Super>Tab"
+        ];
         toggle-application-view = [ "<Super>a" ];
-        switch-input-source = [];
-        switch-input-source-backward = [];
-        screenshot = [];
-        screenshot-window = [];
-        show-screenshot-ui = [ "<Shift><Super>s" ]; 
-        toggle-message-tray = [];
+        switch-input-source = [ ];
+        switch-input-source-backward = [ ];
+        screenshot = [ ];
+        screenshot-window = [ ];
+        show-screenshot-ui = [ "<Shift><Super>s" ];
+        toggle-message-tray = [ ];
       };
 
       ### POWER ###

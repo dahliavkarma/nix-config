@@ -1,14 +1,15 @@
-{  
+{
   pkgs,
   ...
-}: {
-  
+}:
+{
+
   # installations & configurations
   imports = [
     ./mh-shell.nix
   ];
   home.packages = with pkgs; [
-    aria
+    aria2
     btop
     exercism
     neofetch

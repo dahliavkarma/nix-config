@@ -1,8 +1,9 @@
 {
-  username, 
+  username,
   pkgs,
   ...
-}: {
+}:
+{
 
   ### Audio Extra
   security.rtkit.enable = true; # Enables rtkit (https://directory.fsf.org/wiki/RealtimeKit)
@@ -16,12 +17,25 @@
   # value (`99`) is the highest real-time priority level. This setting allows audio applications to run with real-time scheduling, reducing latency and ensuring smoother performance.
   #
   security.pam.loginLimits = [
-    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "99";
+    }
   ];
 
   # Add user to `audio` and `rtkit` groups.
-  users.users.${username}.extraGroups = [ "audio" "rtkit" ];
+  users.users.${username}.extraGroups = [
+    "audio"
+    "rtkit"
+  ];
 
   environment.systemPackages = with pkgs; [
     qjackctl

@@ -1,6 +1,7 @@
 {
   ...
-}: {
+}:
+{
   imports = [
     ../../common
     ../../desktop
@@ -9,7 +10,8 @@
     ./m-hardware.nix
   ];
   nixpkgs.overlays = [
-    (final: prev: { ### TEMPORARY FIX for fingerprint reader, see https://github.com/NixOS/nixpkgs/issues/390101
+    (final: prev: {
+      # ## TEMPORARY FIX for fingerprint reader, see https://github.com/NixOS/nixpkgs/issues/390101
       libfprint-2-tod1-vfs0090 =
         (prev.libfprint-2-tod1-vfs0090.override {
           libfprint-tod = prev.libfprint-tod.overrideAttrs (old: rec {

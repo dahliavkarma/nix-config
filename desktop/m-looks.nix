@@ -1,7 +1,9 @@
 {
   pkgs,
   ...
-}: { # DO NOT TRY TO PATCH SARASA. Exceeds 65535 glyphs. 
+}:
+{
+  # DO NOT TRY TO PATCH SARASA. Exceeds 65535 glyphs.
 
   # stylix
   stylix = {
@@ -14,7 +16,8 @@
       name = "Nordzy-cursors";
       size = 24;
     };
-    fonts = { # will set the system fontconfig too
+    fonts = {
+      # will set the system fontconfig too
       monospace = {
         name = "Sarasa Mono SC";
         package = pkgs.sarasa-gothic;
@@ -23,7 +26,7 @@
         name = "Sarasa UI SC";
         package = pkgs.sarasa-gothic;
       };
-      serif =  {
+      serif = {
         name = "Noto Serif CJK SC";
         package = pkgs.noto-fonts-cjk-serif;
       };

@@ -1,19 +1,21 @@
-{ 
+{
   inputs,
   lib,
   pkgs,
   ...
-}: let 
+}:
+let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-        ${pkgs.waybar}/bin/waybar &
-        ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all &
-        QT_QPA_PLATFORM=wayland ${pkgs.copyq}/bin/copyq --start-server &
+    ${pkgs.waybar}/bin/waybar &
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all &
+    QT_QPA_PLATFORM=wayland ${pkgs.copyq}/bin/copyq --start-server &
   '';
-in {
+in
+{
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      debug.disable_logs = false; 
+      debug.disable_logs = false;
       # xwayland.force_zero_scaling = true; # steam might run pixelated when false but most X11 apps won't scale when true
       monitor = [
         "HDMI-A-1, 3840x2160@60, 0x0, 2"
@@ -54,7 +56,8 @@ in {
       ];
       ### KEYBINDINGS ###
       "$mainMod" = "SUPER";
-      bind = [ # keyboard bindings
+      bind = [
+        # keyboard bindings
         # run
         "$mainMod, T, exec, $terminal"
         "$mainMod, R, exec, $menu --show drun -show-icons -a" # Run
@@ -92,7 +95,7 @@ in {
         "$mainMod CTRL, next, movetoworkspace, r+1"
         "$mainMod CTRL, mouse_up, movetoworkspace, r+1"
         "$mainMod CTRL, mouse_down, movetoworkspace, r-1"
-        # move to workspace 
+        # move to workspace
         "$mainMod ALT, 1, workspace, 1"
         "$mainMod ALT, 2, workspace, 2"
         "$mainMod ALT, 3, workspace, 3"
@@ -135,14 +138,17 @@ in {
         "$mainMod CTRL, v, workspace, 19"
         "$mainMod CTRL, b, workspace, 20"
       ];
-      bindl = [ # works even when lockscreen is active
+      bindl = [
+        # works even when lockscreen is active
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
-      bindel = [ # works when locked & repeat when held
+      bindel = [
+        # works when locked & repeat when held
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
-      bindm = [ # mouse bindings
+      bindm = [
+        # mouse bindings
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizwindow"
         "$mainMod ALT, mouse:272, resizewindow"
@@ -198,7 +204,7 @@ in {
           "almostLinear,0.5,0.5,0.75,1.0"
           "quick,0.15,0,0.1,1"
         ];
-        animation = [ 
+        animation = [
           "global, 1, 10, default"
           "border, 1, 5.39, easeOutQuint"
           "windows, 1, 4.79, easeOutQuint"

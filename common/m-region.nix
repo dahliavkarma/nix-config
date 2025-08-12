@@ -1,8 +1,9 @@
 {
-  lib, 
+  lib,
   ...
-}: {
-  
+}:
+{
+
   # timezone
   time.timeZone = lib.mkDefault "Asia/Tokyo";
 

@@ -1,7 +1,8 @@
 {
-  lib, 
+  lib,
   ...
-}: {
+}:
+{
   programs.kitty = {
     font = {
       size = lib.mkForce 13.5;

@@ -1,19 +1,20 @@
 {
   config,
-  pkgs, 
+  pkgs,
   ...
-}: {
+}:
+{
 
   environment.systemPackages = with pkgs; [
     cloudflared # services.cloudflared enabled below does not install the binary
   ];
   sops.secrets = {
-    "server/cloudflared/cddde6ed-858d-4d20-87cf-cf7efca9eb61.json" = {};
+    "server/cloudflared/cddde6ed-858d-4d20-87cf-cf7efca9eb61.json" = { };
     "server/cloudflared/cert.pem" = {
       path = "/home/user/.config/cloudflared/cert.pem";
     };
   };
-  
+
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;
@@ -33,7 +34,8 @@
     enable = true;
     tunnels = {
       "cddde6ed-858d-4d20-87cf-cf7efca9eb61" = {
-        credentialsFile = config.sops.secrets."server/cloudflared/cddde6ed-858d-4d20-87cf-cf7efca9eb61.json".path;
+        credentialsFile =
+          config.sops.secrets."server/cloudflared/cddde6ed-858d-4d20-87cf-cf7efca9eb61.json".path;
         ingress = {
           "dahliavkarma.com" = {
             service = "https://localhost:443";

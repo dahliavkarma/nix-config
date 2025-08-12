@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     jetbrains.idea-community-bin
     github-copilot-intellij-agent

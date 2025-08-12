@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
 
   programs.zsh.enable = true;
 
@@ -22,10 +23,11 @@
   };
 
   # settings and functioalities
-  programs.zsh = { # some are set in m-system.nix
+  programs.zsh = {
+    # some are set in m-system.nix
     autocd = true;
     historySubstringSearch.enable = true;
-    
+
   };
   programs.zsh.plugins = [
     {

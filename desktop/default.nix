@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.xremap-flake.nixosModules.default
     ./m-ime.nix
@@ -12,6 +13,6 @@
     # ./m-work.nix
   ];
   programs.localsend.enable = true; # firewall is opened automatically
-  services.mullvad-vpn.package = pkgs.mullvad-vpn; 
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
   programs.steam.enable = true;
 }
