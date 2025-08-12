@@ -47,7 +47,7 @@
   services.fail2ban = {
     enable = true;
     maxretry = 10;
-    ignoreIP = [ "192.169.0.0/16" ];
+    ignoreIP = [ "192.168.0.0/16" ];
   };
   programs.ssh.startAgent = true;
 
