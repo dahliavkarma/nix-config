@@ -3,14 +3,18 @@
 }:
 {
   boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
     "nvme"
-    "usbhid"
-    "usb_storage"
     "sd_mod"
+    "thunderbolt"
+    "usb_storage"
+    "xhci_pci"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [
+    "nls_cp437"
+    "nls_iso8859-1"
+    "usbhid"
+    "vfat"
+  ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -19,10 +23,29 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-bee7a3e8-59fe-41d4-98e1-2ea37f990a9d".device =
-    "/dev/disk/by-uuid/bee7a3e8-59fe-41d4-98e1-2ea37f990a9d";
-  boot.initrd.luks.devices."luks-0b7fcd27-5161-4d34-b98c-4c470ec65511".device =
-    "/dev/disk/by-uuid/0b7fcd27-5161-4d34-b98c-4c470ec65511";
+  boot.initrd.luks = {
+    yubikeySupport = true;
+    devices = {
+      "luks-bee7a3e8-59fe-41d4-98e1-2ea37f990a9d" = {
+        device = "/dev/disk/by-uuid/bee7a3e8-59fe-41d4-98e1-2ea37f990a9d";
+        preLVM = true;
+        yubikey = {
+          slot = 2;
+          twoFactor = false;
+          storage.device = "/dev/disk/by-uuid/D687-7C0C";
+        };
+      };
+      "luks-0b7fcd27-5161-4d34-b98c-4c470ec65511" = {
+        device = "/dev/disk/by-uuid/0b7fcd27-5161-4d34-b98c-4c470ec65511";
+        preLVM = true;
+        yubikey = {
+          slot = 2;
+          twoFactor = false;
+          storage.device = "/dev/disk/by-uuid/D687-7C0C";
+        };
+      };
+    };
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D687-7C0C";
