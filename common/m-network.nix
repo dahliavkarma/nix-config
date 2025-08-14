@@ -124,6 +124,14 @@
             "laptop"
           ];
         };
+        "zotero" = {
+          path = "/home/${username}/Zotero";
+          devices = [
+            "home-desktop"
+            "homelab"
+            "laptop"
+          ];
+        };
         #   "obsidian" = {
         #     path = "/home/${commonSettings.user.username}/Obsidian";
         #     devices = [ "home-desktop" "home-server" "laptop" "phone-p" "DESKTOP-P0I9JS1" ];
