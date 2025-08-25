@@ -8,20 +8,17 @@
 
 - [ ] set up hyprsunset before I go blind
 - [X] set up yubikey
-
   - [X] for luks
   - [X] for login
 - [X] change passwords
-
   - [X] set the luks passwords
   - [X] set the user passwords
 - [ ] case-insensitive autocomplete with zsh
-- [ ] fix the hardware temperature monitor on waybar
+- [ ] fix the hardware temperature monitor on waybar (idk i'm lazy)
 - [X] set up the homelab
   - [X] sops-nix
-    - [ ] set up neovim. Idk how I'm putting up with VSCode and my Vim motions are getting rusty tbh
+    - [x] set up neovim. Idk how I'm putting up with VSCode and my Vim motions are getting rusty tbh
 - [X] theme the thing
-
   - [X] fonts
   - [X] stylix
 - [X] set up fingerprint
