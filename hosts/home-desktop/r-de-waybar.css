@@ -1,0 +1,36 @@
+/* This file is in GTK CSS, no syntax highlighting with its current sorry-ass state of dev support */
+
+* {
+  font-family: 'Iosevka NF', 'Sarasa Mono SC', monospace;
+  font-size: 14px;
+  color: #ddc7a1;
+  /* grey2 */
+  transition-duration: 0.5s;
+  border: none;
+}
+
+window {
+  background-color: transparent;
+}
+
+window>box {
+  border: 1px solid #3c3836;
+  /* bg4 */
+  border-radius: 4px;
+  background-color: #141617;
+  /* bg_dim */
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  padding: 0 7px;
+}
+
+.module {
+  padding: 0 7px;
+}
+
+.hosting-monitor {
+  padding: 0 7px;
+}
