@@ -29,7 +29,7 @@ in
         };
       };
       folders = {
-        # DONT SYNTHING SIYUAN DIR FFS
+        # DONT SYNTHING SIYUAN DIR DIRECTLY
         "nix-config" = {
           path = "/home/${username}/nix-config";
           devices = [
@@ -64,18 +64,14 @@ in
             "DESKTOP-P0I9JS1"
           ];
         };
-        # "zotero" = {
-        #   path = "/home/${username}/Zotero";
-        #   devices = [
-        #     "home-desktop"
-        #     "homelab"
-        #     "laptop"
-        #   ];
-        # };
-        #   "obsidian" = {
-        #     path = "/home/${commonSettings.user.username}/Obsidian";
-        #     devices = [ "home-desktop" "home-server" "laptop" "phone-p" "DESKTOP-P0I9JS1" ];
-        #   };
+        "zotero" = {
+          path = "/home/${username}/Zotero";
+          devices = [
+            "home-desktop"
+            "homelab"
+            "laptop"
+          ];
+        };
       };
     };
   };
