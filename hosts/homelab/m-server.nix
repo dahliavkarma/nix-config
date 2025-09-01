@@ -25,7 +25,6 @@
       enableACME = true;
       forceSSL = true;
     };
-    virtualHosts."nextcloud.dahliavkarma.com" = { };
   };
   security.acme = {
     acceptTerms = true;
