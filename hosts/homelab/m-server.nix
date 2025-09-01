@@ -30,19 +30,19 @@
     acceptTerms = true;
     defaults.email = "dahliavkarma@gmail.com";
   };
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "cddde6ed-858d-4d20-87cf-cf7efca9eb61" = {
-        credentialsFile = config.sops.secrets."server/cloudflared/tunnel-content".path;
-        ingress = {
-          "dahliavkarma.com" = {
-            service = "https://localhost:443";
-          };
-        };
-        default = "http_status:404";
-        originRequest.noTLSVerify = true;
-      };
-    };
-  };
+  # services.cloudflared = {
+  #   enable = true;
+  #   tunnels = {
+  #     "cddde6ed-858d-4d20-87cf-cf7efca9eb61" = {
+  #       credentialsFile = config.sops.secrets."server/cloudflared/tunnel-content".path;
+  #       ingress = {
+  #         "dahliavkarma.com" = {
+  #           service = "https://localhost:443";
+  #         };
+  #       };
+  #       default = "http_status:404";
+  #       originRequest.noTLSVerify = true;
+  #     };
+  #   };
+  # };
 }

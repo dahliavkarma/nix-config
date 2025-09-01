@@ -6,7 +6,7 @@
 {
   services.nextcloud = {
     enable = true;
-    hostName = "127.0.0.1";
+    hostName = "nextcloud.dahliavkarma.com";
     database.createLocally = true;
     configureRedis = true;
     https = false;
