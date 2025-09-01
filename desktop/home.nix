@@ -27,7 +27,7 @@
       motrix
       mpv
       musescore
-      # nextcloud-client
+      nextcloud-client
       scantailor-advanced
       siyuan
       telegram-desktop
