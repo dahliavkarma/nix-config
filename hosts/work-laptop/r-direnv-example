@@ -1,0 +1,48 @@
+{
+  # rename into flake.nix in your dev folder
+  description = "Dev shell (Java 21 + Gradle)";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    flake-utils.url = "github:numtide/flake-utils"; # helper to build for all CPU archs
+  };
+
+  outputs =
+    { nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          name = "meets-java21";
+
+          packages = with pkgs; [
+            # --- core toolchain ---
+            temurin-bin-21
+            gradle
+            git
+
+            # --- docker ---
+            docker # CLI that talks to the system daemon
+            docker-compose
+
+            # --- postgres ---
+            postgresql_16 # client + server binaries
+            # optional helpers
+            psqlodbc
+            jq
+            ripgrep
+          ];
+
+          JAVA_HOME = "${pkgs.temurin-bin-21}";
+
+          shellHook = ''
+            echo "🐳 Docker CLI:  $(docker --version 2>/dev/null || echo 'not in PATH')"
+            echo "🐘 psql:       $(psql --version 2>/dev/null || echo 'not installed')"
+          '';
+        };
+      }
+    );
+}
