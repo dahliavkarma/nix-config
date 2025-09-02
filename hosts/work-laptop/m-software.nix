@@ -20,7 +20,6 @@
       "kate"
       "raycast"
       "siyuan"
-      "syncthing"
       "ungoogled-chromium"
       "zen"
     ];
