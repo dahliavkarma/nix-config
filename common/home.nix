@@ -16,6 +16,7 @@
     btop
     exercism
     fastfetch
+    nix-tree
     yazi
   ];
 
