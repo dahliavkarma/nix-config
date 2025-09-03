@@ -14,6 +14,7 @@
       "docker-desktop"
       "intellij-idea-ce"
 
+      "discord"
       "intune-company-portal"
       "microsoft-office"
       "microsoft-teams"
