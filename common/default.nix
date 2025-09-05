@@ -11,4 +11,5 @@
     ./m-system-darwinComp.nix # system configuration/tools that are also available on darwin
     ./m-user.nix # user management and home-manager
   ];
+  nix.package = pkgs.lixPackageSets.latest.lix;
 }
