@@ -4,45 +4,31 @@
   ...
 }:
 {
-
-  environment.systemPackages = with pkgs; [
-    cloudflared # services.cloudflared enabled below does not install the binary
-  ];
-  sops.secrets = {
-    "server/cloudflared/tunnel-content" = { };
-    "server/cloudflared/cert.pem" = {
-      path = "/home/user/.config/cloudflared/cert.pem";
-    };
+  sops.secrets."server/tailscale/authkey" = {
+    owner = config.services.caddy.user;
+    group = config.services.caddy.group;
+    mode = "600";
   };
-
-  services.nginx = {
+  services.caddy = {
     enable = true;
-    recommendedGzipSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    virtualHosts."dahliavkarma.com" = {
-      enableACME = true;
-      forceSSL = true;
-    };
+    package = pkgs.callPackage ./r-caddy-tailscale.nix { };
+    acmeCA = "https://acme-v02.api.letsencrypt.org/directory"; # for dev/testing; comment out for production
+    email = "dahliavkarma@gmail.com";
+    environmentFile = config.sops.secrets."server/tailscale/authkey".path;
   };
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "dahliavkarma@gmail.com";
-  };
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "cddde6ed-858d-4d20-87cf-cf7efca9eb61" = {
-        credentialsFile = config.sops.secrets."server/cloudflared/tunnel-content".path;
-        ingress = {
-          "dahliavkarma.com" = {
-            service = "https://localhost:443";
-          };
-        };
-        default = "http_status:404";
-        originRequest.noTLSVerify = true;
-      };
-    };
-  };
+  # services.cloudflared = {
+  #   enable = true;
+  #   tunnels = {
+  #     "cddde6ed-858d-4d20-87cf-cf7efca9eb61" = {
+  #       credentialsFile = config.sops.secrets."server/cloudflared/tunnel-content".path;
+  #       ingress = {
+  #         "dahliavkarma.com" = {
+  #           service = "https://localhost:443";
+  #         };
+  #       };
+  #       default = "http_status:404";
+  #       originRequest.noTLSVerify = true;
+  #     };
+  #   };
+  # };
 }

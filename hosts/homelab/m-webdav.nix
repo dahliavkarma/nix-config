@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -9,7 +10,7 @@
     hostName = "nextcloud.dahliavkarma.com";
     database.createLocally = true;
     configureRedis = true;
-    https = false;
+    https = true;
     autoUpdateApps.enable = true;
     config = {
       adminuser = "admin";
@@ -24,6 +25,9 @@
     };
     package = pkgs.nextcloud31;
   };
+
+  services.nginx.enable = lib.mkForce false;
+  # services.caddy.virtualHosts."https://nextcloud.dahliavkarma.com".extraConfig =
   sops.secrets = {
     "server/nextcloud/admin-pass" = {
       owner = config.users.users.nextcloud.name;
