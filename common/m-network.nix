@@ -62,4 +62,8 @@
     mullvad-closest
   ];
 
+  services.tailscale = {
+    enable = true;
+  };
+
 }
