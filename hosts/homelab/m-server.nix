@@ -12,8 +12,8 @@
   services.caddy = {
     enable = true;
     package = pkgs.callPackage ./r-caddy-tailscale.nix { };
-    acmeCA = "https://acme-v02.api.letsencrypt.org/directory"; # for dev/testing; comment out for production
-    email = "dahliavkarma@gmail.com";
+    # acmeCA = "https://acme-v02.api.letsencrypt.org/directory"; # for dev/testing; comment out for production
+    # email = "dahliavkarma@gmail.com";
     environmentFile = config.sops.secrets."server/tailscale/authkey".path;
   };
   # services.cloudflared = {
