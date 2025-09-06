@@ -1,139 +1,61 @@
 {
-  config,
-  lib,
-  pkgs,
+
   ...
 }:
-let
-  cfg = config.services.nextcloud;
-  fpm = config.services.phpfpm.pools.nextcloud;
-  webserver = config.services.caddy;
-  phpinfoScript = pkgs.writeTextFile {
-    name = "info.php";
-    text = "<?php phpinfo();";
-  };
-  phpinfoDir = pkgs.runCommand "phpinfo-dir" { } ''
-    mkdir -p $out
-    cp ${phpinfoScript} $out/index.php
-  '';
-in
 {
-  services.caddy.virtualHosts."nextcloud-phpinfo.silverside-chimera.ts.net" = {
-    extraConfig = ''
-      bind tailscale/nextcloud-phpinfo
-      tailscale_auth
-      root * ${phpinfoDir}
-      php_fastcgi unix/${fpm.socket}
-      file_server
-    '';
+  # Define the Docker service for the NextCloud All-In-One image
+  virtualisation.oci-containers.containers."nextcloud-aio-mastercontainer" = {
+    # Use the latest NextCloud All-In-One image
+    image = "nextcloud/all-in-one:latest";
+    # Options required by the NextCloud All-In-One image
+    extraOptions = [
+      "--init"
+      "--sig-proxy=false"
+    ];
+    ports = [
+      # Forward the Nextcloud admin interface to port 8080
+      "8080:8080"
+      # Port 11000 is not explicitly forwarded here. NextCloud spawns new containers that forward on that port.
+    ];
+    volumes = [
+      "nextcloud_aio_mastercontainer:/mnt/docker-aio-config"
+      # This gives the container access to the Docker socket, which gives it the ability to spawn new containers, which is required for NextCloud AIO to work
+      "/var/run/docker.sock:/var/run/docker.sock:ro"
+    ];
+    environment = {
+      # Set the port for the Nextcloud main interface, we will forward port 443 to this port in Caddy
+      APACHE_PORT = "11000";
+      # Bind to all interfaces
+      APACHE_IP_BINDING = "0.0.0.0";
+      # We will use Caddy for reverse proxying and HTTPS, so we can skip domain validation
+      SKIP_DOMAIN_VALIDATION = "true";
+    };
   };
-  services.nextcloud = {
+  services.caddy = {
     enable = true;
-    hostName = "nextcloud.silverside-chimera.ts.net";
-    database.createLocally = true;
-    configureRedis = true;
-    https = false;
-    # autoUpdateApps.enable = true;
-    config = {
-      adminuser = "admin";
-      adminpassFile = config.sops.secrets."server/nextcloud/admin-pass".path;
-      dbtype = "pgsql";
+    virtualHosts = {
+      # This will be the location where we will access Nextcloud
+      "nextcloud.silverside-chimera.ts.net" = {
+        # We reverse proxy this to our port 11000 using http
+        extraConfig = ''
+          bind tailscale/nextcloud
+          tailscale_auth
+          reverse_proxy localhost:11000
+        '';
+      };
+      # This will be the location where we will access Nextcloud's installation and admin panel
+      "nextcloud-admin.silverside-chimera.ts.net" = {
+        # We reverse proxy this to our port 8080. The Nextcloud container will try to use some self-signed certificate, but we can safely ignore it
+        extraConfig = ''
+          bind tailscale/nextcloud-admin
+          tailscale_auth
+            reverse_proxy https://localhost:8080 {
+                transport http {
+                    tls_insecure_skip_verify
+                }
+            }
+        '';
+      };
     };
-    settings = {
-      # overwriteprotocol = "https";
-      # default_phone_region = "JP";
-      log_type = "file";
-      loglevel = 0;
-      trusted_domains = [
-        "100.121.225.8"
-        "nextcloud"
-      ];
-      trusted_proxies = [
-        "100.64.0.0/10"
-        "127.0.0.1"
-      ];
-      # overwritehost = "nextcloud.silverside-chimera.ts.net";
-      # overwritecondaddr = "^100\\.";
-      # forwarded_for_headers = [ "HTTP_X_FORWARDED_FOR" ];
-    };
-    package = pkgs.nextcloud31;
-  };
-
-  services.nginx.enable = lib.mkForce false;
-  services.caddy.virtualHosts."https://nextcloud.silverside-chimera.ts.net/".extraConfig = ''
-    bind tailscale/nextcloud
-    tailscale_auth
-    encode zstd gzip
-
-    root * ${config.services.nginx.virtualHosts.${cfg.hostName}.root}
-
-    redir /.well-known/carddav /remote.php/dav 301
-    redir /.well-known/caldav /remote.php/dav 301
-    redir /.well-known/* /index.php{uri} 301
-    redir /remote/* /remote.php{uri} 301
-
-    header {
-      Strict-Transport-Security max-age=31536000
-      Permissions-Policy interest-cohort=()
-      X-Content-Type-Options nosniff
-      X-Frame-Options SAMEORIGIN
-      Referrer-Policy no-referrer
-      X-XSS-Protection "1; mode=block"
-      X-Permitted-Cross-Domain-Policies none
-      X-Robots-Tag "noindex, nofollow"
-      -X-Powered-By
-    }
-
-    php_fastcgi unix/${fpm.socket} {
-      root ${config.services.nginx.virtualHosts.${cfg.hostName}.root}
-      env front_controller_active true
-      env modHeadersAvailable true
-    }
-
-    @forbidden {
-      path /build/* /tests/* /config/* /lib/* /3rdparty/* /templates/* /data/*
-      path /.* /autotest* /occ* /issue* /indie* /db_* /console*
-      not path /.well-known/*
-    }
-    error @forbidden 404
-
-    @immutable {
-      path *.css *.js *.mjs *.svg *.gif *.png *.jpg *.ico *.wasm *.tflite
-      query v=*
-    }
-    header @immutable Cache-Control "max-age=15778463, immutable"
-
-    @static {
-      path *.css *.js *.mjs *.svg *.gif *.png *.jpg *.ico *.wasm *.tflite
-      not query v=*
-    }
-    header @static Cache-Control "max-age=15778463"
-
-    @woff2 path *.woff2
-    header @woff2 Cache-Control "max-age=604800"
-
-    file_server
-  '';
-  sops.secrets = {
-    "server/nextcloud/admin-pass" = {
-      owner = config.users.users.nextcloud.name;
-      group = config.users.users.nextcloud.name;
-    };
-  };
-  users.users.nextcloud.extraGroups = [ "users" ];
-  users.groups.nextcloud.members = [
-    "nextcloud"
-    webserver.user
-  ];
-  services.phpfpm.pools.nextcloud.settings = {
-    "listen.owner" = webserver.user;
-    "listen.group" = webserver.group;
-    "php_admin_value[open_basedir]" = lib.mkForce "${
-      config.services.nginx.virtualHosts.${cfg.hostName}.root
-    }:${cfg.package}:/var/lib/nextcloud:/tmp:${phpinfoDir}";
-  };
-  systemd.services."nextcloud-setup" = {
-    requires = [ "postgresql.service" ];
-    after = [ "postgresql.service" ];
   };
 }

@@ -2,7 +2,6 @@
   ...
 }:
 {
-  virtualisation.oci-containers = {
-    backend = "podman";
-  };
+  virtualisation.docker.enable = true;
+  virtualisation.oci-containers.backend = "docker";
 }
