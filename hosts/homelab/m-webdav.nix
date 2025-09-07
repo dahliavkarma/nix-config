@@ -31,31 +31,28 @@
       SKIP_DOMAIN_VALIDATION = "true";
     };
   };
-  services.caddy = {
-    enable = true;
-    virtualHosts = {
-      # This will be the location where we will access Nextcloud
-      "nextcloud.silverside-chimera.ts.net" = {
-        # We reverse proxy this to our port 11000 using http
-        extraConfig = ''
-          bind tailscale/nextcloud
-          tailscale_auth
-          reverse_proxy localhost:11000
-        '';
-      };
-      # This will be the location where we will access Nextcloud's installation and admin panel
-      "nextcloud-admin.silverside-chimera.ts.net" = {
-        # We reverse proxy this to our port 8080. The Nextcloud container will try to use some self-signed certificate, but we can safely ignore it
-        extraConfig = ''
-          bind tailscale/nextcloud-admin
-          tailscale_auth
-            reverse_proxy https://localhost:8080 {
-                transport http {
-                    tls_insecure_skip_verify
-                }
-            }
-        '';
-      };
+  services.caddy.virtualHosts = {
+    # This will be the location where we will access Nextcloud
+    "nextcloud.silverside-chimera.ts.net" = {
+      # We reverse proxy this to our port 11000 using http
+      extraConfig = ''
+        bind tailscale/nextcloud
+        tailscale_auth
+        reverse_proxy localhost:11000
+      '';
+    };
+    # This will be the location where we will access Nextcloud's installation and admin panel
+    "nextcloud-admin.silverside-chimera.ts.net" = {
+      # We reverse proxy this to our port 8080. The Nextcloud container will try to use some self-signed certificate, but we can safely ignore it
+      extraConfig = ''
+        bind tailscale/nextcloud-admin
+        tailscale_auth
+          reverse_proxy https://localhost:8080 {
+              transport http {
+                  tls_insecure_skip_verify
+              }
+          }
+      '';
     };
   };
 }
