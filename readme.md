@@ -3,6 +3,7 @@
 - Hosts defined in flake.nix; actual output entries are generated from hosts/default.nix, where home manager is also imported (options are defined later).
 - Instead of users defined as a list, which I thought about, I just defined "username" as a string. If someone wants to share a computer with me, they can pry it from my cold dead hands.
   - Yes, "username" is visibly longer than "user". No, I don't care.
+- Server runs caddy-tailscale + Nextcloud AIO (w/ docker) + immich.
 
 # Todo
 
@@ -23,3 +24,4 @@
   - [X] stylix
 - [X] set up fingerprint
   ~~set up flatpak~~ actually you know what I probably don't need that
+- [ ] add alias for emptying trash
