@@ -34,4 +34,8 @@
     enable = true;
   };
 
+  programs.zsh.zsh-abbr.abbreviations = {
+    "empty-trash" = "pushd ~/.local/share/Trash && rm -rf .";
+  };
+
 }

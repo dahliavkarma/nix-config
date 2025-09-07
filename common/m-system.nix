@@ -28,6 +28,10 @@
     autosuggestions.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+    setOptions = [
+      "EXTENDED_HISTORY"
+      "RM_STAR_SILENT"
+    ];
   };
   users.defaultUserShell = pkgs.zsh;
   environment.pathsToLink = [ "/share/zsh" ]; # to get completion for system packages (e.g. systemd).
