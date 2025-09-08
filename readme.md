@@ -24,4 +24,4 @@
   - [X] stylix
 - [X] set up fingerprint
   ~~set up flatpak~~ actually you know what I probably don't need that
-- [ ] add alias for emptying trash
+- [X] add alias for emptying trash
