@@ -1,13 +1,11 @@
 {
+  pkgs,
   username,
   ...
 }:
 {
 
   homebrew = {
-    brews = [
-      "azure-cli"
-    ];
     casks = [
       "azure-data-studio"
       "dbeaver-community"
@@ -26,5 +24,9 @@
       "Azure VPN Client" = 1553936137;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    azure-cli
+  ];
 
 }
