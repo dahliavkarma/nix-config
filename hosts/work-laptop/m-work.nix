@@ -10,6 +10,7 @@
       "azure-data-studio"
       "dbeaver-community"
       "docker-desktop"
+      "insomnia"
       "intellij-idea-ce"
 
       "discord"
