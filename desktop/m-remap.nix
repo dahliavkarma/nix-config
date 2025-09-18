@@ -61,7 +61,10 @@
           "SysRq" = "Home"; # yes, PrtSc key is actually SysRq
           "RightCtrl" = "End";
         };
-        device.only = "Darfon Thinkpad X12 Detachable Gen 1 Folio case -1";
+        device.only = [
+          "Thinkpad"
+          "TrackPoint"
+        ];
       }
     ];
     keymap = [
