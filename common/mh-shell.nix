@@ -77,19 +77,21 @@
   # ssh settings
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
     matchBlocks = {
       homelab = {
         host = "homelab";
         hostname = "192.168.0.52";
+        addKeysToAgent = "yes";
       };
       home-desktop = {
         host = "home-desktop";
         hostname = "192.168.0.50";
+        addKeysToAgent = "yes";
       };
       laptop = {
         host = "laptop";
         hostname = "192.168.0.41";
+        addKeysToAgent = "yes";
       };
     };
   };
