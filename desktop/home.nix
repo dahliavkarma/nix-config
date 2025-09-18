@@ -19,7 +19,6 @@
       discord
       ffmpeg
       gimp
-      heroic
       kdePackages.kate
       kdePackages.okular
       krita
