@@ -29,10 +29,7 @@
       nextcloud-client
       scantailor-advanced
       siyuan
-      telegram-desktop
-      thunderbird
       tor-browser
-      tuxguitar
       vscodium # remember to install Nix IDE and Catppuccin Icons
       yt-dlp
       zotero
