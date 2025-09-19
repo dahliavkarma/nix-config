@@ -8,6 +8,7 @@
     ./m-boot.nix
     ./m-de-components.nix
     ./m-de-hyprland.nix
+    ./mh-dev.nix
     ./m-guitar.nix
     ./m-remap.nix
   ];

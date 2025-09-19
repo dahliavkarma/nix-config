@@ -23,10 +23,10 @@
       geary # gnome mail client
       gnome-backgrounds # default wallpapers
       # gnome-bluetooth # keeping around just in case
-      # gnome-calculator
-      # gnome-calendar
+      gnome-calculator
+      gnome-calendar
       gnome-characters
-      # gnome-clocks
+      gnome-clocks
       gnome-color-manager
       gnome-connections # gnome remote desktop
       gnome-console
@@ -54,7 +54,7 @@
       # file-roller # gnome archive utility
       # gucharmap # gnome character map (not the utility gnome-character), no need to exclude
       # nautilus # gnome file manager, no need to exclude
-      # seahorse # secret management in gnome-keyring
+      seahorse # secret management in gnome-keyring
       # sushi # gnome quick previewer
       # totem # gnome videos, tied to thumbnail generation
       # nixos-background-info # ???
