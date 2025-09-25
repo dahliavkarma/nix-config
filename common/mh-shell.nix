@@ -12,7 +12,7 @@
     abbreviations = {
       ## abreviations & substitutions
       ls = "eza";
-      cat = "bat";
+      # cat = "bat"; # comfortable enough to comment this out
       ## workarounds
       # nix = "noglob nix"; # enable hashtag-hostname designation without quotes
       # nixos-rebuild = "noglob nixos-rebuild"; # see above
