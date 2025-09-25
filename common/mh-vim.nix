@@ -16,6 +16,11 @@
         lsp.enable = true;
         treesitter.enable = true;
 
+        clipboard = {
+          enable = true;
+          registers = "unamed, unamedplus";
+        };
+
         languages = {
           nix.enable = true;
           ts.enable = true;
