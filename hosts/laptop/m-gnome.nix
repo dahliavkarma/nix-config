@@ -45,6 +45,7 @@
       gnome-weather
       # loupe # gnome image viewer, rust-driven
       orca # gnome screen reader
+      seahorse # secret management in gnome-keyring
       simple-scan
       # snapshot # gnome camera
       yelp # gnome help viewer
@@ -54,7 +55,6 @@
       # file-roller # gnome archive utility
       # gucharmap # gnome character map (not the utility gnome-character), no need to exclude
       # nautilus # gnome file manager, no need to exclude
-      seahorse # secret management in gnome-keyring
       # sushi # gnome quick previewer
       # totem # gnome videos, tied to thumbnail generation
       # nixos-background-info # ???
