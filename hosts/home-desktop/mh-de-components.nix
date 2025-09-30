@@ -9,8 +9,13 @@
   };
 
   home.packages = with pkgs; [
+    calibre
     gnome-text-editor
+    kdePackages.kate
+    kdePackages.okular
     peazip
+    scantailor-advanced
+    zotero
 
     dunst
     libnotify

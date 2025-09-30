@@ -39,4 +39,5 @@
   };
   # services.touchegg.enable = true; # multi-touch gesture recognizer, not compatible with Wayland
 
+  hardware.bluetooth.enable = true;
 }

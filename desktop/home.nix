@@ -13,24 +13,19 @@
     with pkgs;
     [
       # anki
-      calibre
       discord
       ffmpeg
       gimp
-      kdePackages.kate
-      kdePackages.okular
       krita
       libreoffice
       motrix
       mpv
       musescore
       nextcloud-client
-      scantailor-advanced
       siyuan
       tor-browser
       vscodium # remember to install Nix IDE and Catppuccin Icons
       yt-dlp
-      zotero
     ]
     ++ (with inputs; [
       zen-browser.packages.${pkgs.system}.default

@@ -1,0 +1,35 @@
+{
+  pkgs,
+  ...
+}:
+{
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+  };
+
+  services.desktopManager.plasma6 = {
+    enable = true;
+  };
+
+  environment.plasma6.excludePackages = with pkgs; [
+    # plasma-browser-integration
+    konsole
+    # (lib.getBin qttools) # Expose qdbus in PATH
+    ark
+    elisa
+    # gwenview
+    # okular
+    # kate
+    khelpcenter
+    # dolphin
+    # baloo-widgets # baloo information in Dolphin
+    # dolphin-plugins
+    # spectacle
+    # ffmpegthumbs
+    krdp
+    # xwaylandvideobridge # exposes Wayland windows to X11 screen capture
+  ];
+}
