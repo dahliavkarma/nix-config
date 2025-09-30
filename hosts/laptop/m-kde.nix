@@ -14,7 +14,7 @@
     enable = true;
   };
 
-  environment.plasma6.excludePackages = with pkgs; [
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
     # plasma-browser-integration
     konsole
     # (lib.getBin qttools) # Expose qdbus in PATH
