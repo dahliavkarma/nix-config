@@ -18,7 +18,7 @@
 
         clipboard = {
           enable = true;
-          registers = "unamed, unamedplus";
+          registers = "unnamedplus";
         };
 
         languages = {
