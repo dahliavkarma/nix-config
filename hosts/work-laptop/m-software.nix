@@ -11,6 +11,7 @@
 
   homebrew = {
     enable = true;
+    greedyCasks = true;
 #    brews = [
 #      "mpv"
 #    ];
