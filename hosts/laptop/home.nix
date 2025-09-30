@@ -5,7 +5,7 @@
   imports = [
     ../../common/home.nix
     ../../desktop/home.nix
-    ./mh-gnome.nix
+    # ./mh-gnome.nix
     ./mh-kitty.nix
     ./mh-utils.nix
   ];

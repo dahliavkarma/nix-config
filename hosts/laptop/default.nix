@@ -6,7 +6,7 @@
     ../../common
     ../../desktop
     ./m-boot.nix
-    ./m-gnome.nix
+    # ./m-gnome.nix
     ./m-hardware.nix
   ];
   nixpkgs.overlays = [
