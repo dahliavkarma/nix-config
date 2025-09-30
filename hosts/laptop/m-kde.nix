@@ -32,4 +32,6 @@
     krdp
     # xwaylandvideobridge # exposes Wayland windows to X11 screen capture
   ];
+
+  security.pam.services.login.kwallet.enable = true;
 }
