@@ -14,7 +14,9 @@
   ];
   programs.localsend.enable = true; # firewall is opened automatically
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
-  # environment.systemPackages = with pkgs; [
-  #   bitwarden # Don't even try.
-  # ];
+  environment.systemPackages = with pkgs; [
+    #   bitwarden # Don't even bother.
+    yubioath-flutter
+    yubikey-manager
+  ];
 }

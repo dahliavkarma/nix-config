@@ -2,6 +2,7 @@
   ...
 }:
 {
+  boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = [
     "nvme"
     "sd_mod"
@@ -24,25 +25,16 @@
   };
 
   boot.initrd.luks = {
-    yubikeySupport = true;
     devices = {
       "luks-bee7a3e8-59fe-41d4-98e1-2ea37f990a9d" = {
         device = "/dev/disk/by-uuid/bee7a3e8-59fe-41d4-98e1-2ea37f990a9d";
         preLVM = true;
-        yubikey = {
-          slot = 2;
-          twoFactor = false;
-          storage.device = "/dev/disk/by-uuid/D687-7C0C";
-        };
+        crypttabExtraOpts = [ "fido2-device=auto" ];
       };
       "luks-0b7fcd27-5161-4d34-b98c-4c470ec65511" = {
         device = "/dev/disk/by-uuid/0b7fcd27-5161-4d34-b98c-4c470ec65511";
         preLVM = true;
-        yubikey = {
-          slot = 2;
-          twoFactor = false;
-          storage.device = "/dev/disk/by-uuid/D687-7C0C";
-        };
+        crypttabExtraOpts = [ "fido2-device=auto" ];
       };
     };
   };
