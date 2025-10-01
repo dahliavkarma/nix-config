@@ -13,6 +13,7 @@
     gnome-text-editor
     kdePackages.kate
     kdePackages.okular
+    libreoffice
     peazip
     scantailor-advanced
     zotero

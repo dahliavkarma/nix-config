@@ -17,7 +17,6 @@
       ffmpeg
       gimp
       krita
-      libreoffice
       motrix
       mpv
       musescore
