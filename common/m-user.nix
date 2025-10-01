@@ -1,6 +1,7 @@
 {
   hostname,
   inputs,
+  pkgs,
   stateVersion,
   username,
   ...
