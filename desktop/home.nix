@@ -20,7 +20,6 @@
       motrix
       mpv
       musescore
-      ncdu
       nextcloud-client
       siyuan
       tor-browser
