@@ -1,5 +1,5 @@
 {
-  inputs, 
+  inputs,
   pkgs,
   stateVersion,
   system,
@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     bat
     eza
+    nh
     nixd
     nixfmt-rfc-style
     p7zip

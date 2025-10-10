@@ -17,7 +17,6 @@
   environment.systemPackages = with pkgs; [
     exfat
     inxi
-    nh
     pciutils # lspci
     psmisc # fuser, killall, pstree
     usbutils # lsusb
