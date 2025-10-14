@@ -36,8 +36,8 @@
   environment.pathsToLink = [ "/share/zsh" ]; # to get completion for system packages (e.g. systemd).
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   programs.starship.enable = true;
-  environment.sessionVariables.FLAKE = "/home/${username}/nix-config";
-  environment.sessionVariables.NH_FLAKE = "/home/${username}/nix-config";
+  # environment.sessionVariables.FLAKE = "/home/${username}/nix-config";
+  # environment.sessionVariables.NH_FLAKE = "/home/${username}/nix-config";
   environment.variables.EDITOR = "nvim";
 
   # auto system tasks
