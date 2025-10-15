@@ -1,5 +1,4 @@
 {
-  lib,
   ...
 }:
 {
@@ -14,5 +13,10 @@
       "update" = "pushd ~/nix-config && nix flake update && popd";
       "switch" = "sudo darwin-rebuild --flake /Users/user/nix-config switch";
     };
+  };
+
+  home.sessionVariables = {
+    FLAKE = "/home/user/nix-config";
+    NH_FLAKE = "/home/user/nix-config";
   };
 }
