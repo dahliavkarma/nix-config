@@ -16,7 +16,7 @@
   };
 
   home.sessionVariables = {
-    FLAKE = "/home/user/nix-config";
-    NH_FLAKE = "/home/user/nix-config";
+    FLAKE = "/Users/user/nix-config";
+    NH_FLAKE = "/Users/user/nix-config";
   };
 }
