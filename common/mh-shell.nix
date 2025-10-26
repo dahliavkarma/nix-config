@@ -69,8 +69,12 @@
       "*.swp"
       ".stfolder/"
     ];
-    userName = "dahliavkarma";
-    userEmail = "dahliavkarma@gmail.com";
+    settings = {
+      user = {
+        name = "dahliavkarma";
+        email = "dahliavkarma@gmail.com";
+      };
+    };
   };
 
   # ssh settings
