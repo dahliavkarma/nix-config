@@ -8,7 +8,7 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all &
-    QT_QPA_PLATFORM=wayland ${pkgs.copyq}/bin/copyq --start-server &
+    ${pkgs.copyq}/bin/copyq --start-server &
   '';
 in
 {

@@ -12,5 +12,5 @@
     ./m-guitar.nix
     ./m-remap.nix
   ];
-  environment.sessionVariables.QT_QPA_PLATFORM = "wayland"; # for musescore to run in Wayland with native HiDPI support;
+  environment.sessionVariables.MU_QT_QPA_PLATFORM = "wayland"; # for musescore to run in Wayland with native HiDPI support;
 }
