@@ -33,4 +33,6 @@
     { device = "/dev/disk/by-uuid/02403e27-122d-46e0-b507-eca920abec5e"; }
   ];
 
+  security.tpm2.enable = false;
+
 }
