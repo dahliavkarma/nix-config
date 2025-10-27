@@ -99,9 +99,4 @@
     };
   };
 
-  home.sessionVariables = {
-    FLAKE = "./nix-config";
-    NH_FLAKE = "./nix-config";
-  };
-
 }
