@@ -14,7 +14,7 @@
       addons = with pkgs; [
         fcitx5-m17n
         fcitx5-mozc
-        fcitx5-chinese-addons
+        qt6Packages.fcitx5-chinese-addons
         fcitx5-gtk
       ];
     };
