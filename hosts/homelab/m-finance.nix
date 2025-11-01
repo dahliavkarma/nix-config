@@ -2,7 +2,7 @@
   ...
 }:
 {
-  services.immich = {
+  services.actual = {
     enable = true;
     port = 3000; # the default
     settings.hostname = "localhost";
