@@ -35,7 +35,6 @@
     "nextcloud.silverside-chimera.ts.net" = {
       # We reverse proxy this to our port 11000 using http
       extraConfig = ''
-        bind tailscale/nextcloud
         tailscale_auth
         reverse_proxy localhost:11000
       '';
@@ -44,7 +43,6 @@
     "nextcloud-admin.silverside-chimera.ts.net" = {
       # We reverse proxy this to our port 8080. The Nextcloud container will try to use some self-signed certificate, but we can safely ignore it
       extraConfig = ''
-        bind tailscale/nextcloud-admin
         tailscale_auth
           reverse_proxy https://localhost:8080 {
               transport http {
