@@ -4,8 +4,10 @@
 {
   services.actual = {
     enable = true;
-    port = 3000; # the default
-    settings.hostname = "localhost";
+    settings = {
+      port = 3000; # the default
+      hostname = "localhost";
+    };
   };
   services.caddy.virtualHosts."actual.silverside-chimera.ts.net" = {
     extraConfig = ''
