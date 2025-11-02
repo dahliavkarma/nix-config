@@ -8,6 +8,7 @@
   };
   services.caddy.virtualHosts."immich.silverside-chimera.ts.net" = {
     extraConfig = ''
+      bind tailscale/immich
       tailscale_auth
       reverse_proxy localhost:2283
     '';
