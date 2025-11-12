@@ -19,10 +19,13 @@
       "iina"
       "karabiner-elements"
       "kate"
+      "nextcloud"
       "raycast"
       "siyuan"
+      "tailscale"
       "ungoogled-chromium"
       "zen"
+      "zotero"
     ];
     masApps = {
       Bitwarden = 1352778147; # for biometric
