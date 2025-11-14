@@ -49,19 +49,19 @@
       options = "--delete-older-than 1d";
     };
   };
-  system = {
-    autoUpgrade = {
-      enable = true;
-      flake = inputs.self.outPath;
-      flags = [
-        "--update-input"
-        "nixpkgs"
-        "-L" # print build logs
-      ];
-      dates = "20:00";
-      randomizedDelaySec = "45min";
-    };
-  };
+  # system = {
+  #   autoUpgrade = {
+  #     enable = true;
+  #     flake = inputs.self.outPath;
+  #     flags = [
+  #       "--update-input"
+  #       "nixpkgs"
+  #       "-L" # print build logs
+  #     ];
+  #     dates = "20:00";
+  #     randomizedDelaySec = "45min";
+  # };
+  # };
 
   # static settings
   hardware.enableAllFirmware = true; # enable needed firmware regardless of license
