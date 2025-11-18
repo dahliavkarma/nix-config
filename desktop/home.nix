@@ -16,12 +16,13 @@
       discord
       ffmpeg
       gimp
+      google-chrome
       krita
       motrix
       mpv
       musescore
       nextcloud-client
-      siyuan
+      # siyuan
       tor-browser
       vscodium # remember to install Nix IDE and Catppuccin Icons
       yt-dlp
@@ -29,15 +30,6 @@
     ++ (with inputs; [
       zen-browser.packages.${pkgs.system}.default
     ]);
-  programs.chromium = {
-    # since chrome is needed from time to time
-    enable = true;
-    extensions = [
-      # doesn't work just yet
-      "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-    ];
-  };
   services.copyq = {
     enable = true;
     forceXWayland = false;
