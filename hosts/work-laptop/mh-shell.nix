@@ -14,10 +14,4 @@
       "switch" = "sudo darwin-rebuild --flake /Users/user/nix-config switch";
     };
   };
-
-  home.sessionVariables = {
-    FLAKE = "/Users/user/nix-config";
-    NH_FLAKE = "/Users/user/nix-config";
-    NH_DARWIN_FLAKE = "/Users/user/nix-config";
-  };
 }
