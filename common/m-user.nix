@@ -23,6 +23,7 @@
   };
   nix.settings.allowed-users = [ "@wheel" ];
   security.sudo.execWheelOnly = true;
+  security.pam.sshAgentAuth.enable = true;
 
   # yubikey login (pam_u2f)
   security.pam.services = {

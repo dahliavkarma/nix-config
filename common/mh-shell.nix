@@ -85,16 +85,19 @@
         host = "homelab";
         hostname = "192.168.0.52";
         addKeysToAgent = "yes";
+        forwardAgent = true;
       };
       home-desktop = {
         host = "home-desktop";
         hostname = "192.168.0.50";
         addKeysToAgent = "yes";
+        forwardAgent = true;
       };
       laptop = {
         host = "laptop";
         hostname = "192.168.0.41";
         addKeysToAgent = "yes";
+        forwardAgent = true;
       };
     };
   };
