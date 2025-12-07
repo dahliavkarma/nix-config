@@ -154,11 +154,11 @@ in
         "$mainMod ALT, mouse:272, resizewindow"
       ];
       ### WINDOWS AND WORKSPACES ###
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-        "float, class:com.github.hluk.copyq, title:CopyQ"
-        "float, class:guitarix"
-        "size 611 679, class:guitarix, title: Guitarix:gx_head"
+      windowrule = [
+        "suppress_event maximize, match:class .*"
+        "float on, match:class com.github.hluk.copyq"
+        "float on, match:class guitarix"
+        "size 611 679, match:title Guitarix:gx_head"
       ];
       ### LOOK AND FEEL ###
       dwindle = {
