@@ -11,6 +11,7 @@
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
     baobab
+    bluetuith # bluetooth management
     nautilus
     evince # pdf viewer, generates thumbnail
     loupe # rust-driven photo viewer
@@ -28,6 +29,10 @@
 
   programs.ssh = {
     askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+  };
+
+  services.blueman = {
+    enable = true;
   };
 
 }

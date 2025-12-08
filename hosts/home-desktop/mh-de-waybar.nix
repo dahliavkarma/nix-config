@@ -10,13 +10,13 @@
   "custom/slash".format = "/";
   memory = {
     format = " {}%";
-    on-click = "${pkgs.kitty}/bin/kitty --class system_monitor -e btop";
+    on-click = "${pkgs.kitty}/bin/kitty --class system_monitor --hold sh -c btop";
   };
   cpu = {
     interval = 1;
     format = " {icon0}{icon1}{icon2}{icon3}";
     format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-    on-click = "${pkgs.kitty}/bin/kitty --class system_monitor -e btop";
+    on-click = "${pkgs.kitty}/bin/kitty --class system_monitor --hold sh -c btop";
     max-length = 25;
     min-length = 6;
   };
@@ -80,6 +80,11 @@
     on-click = "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink";
     tooltip = false;
   };
+  bluetooth = {
+    format = "󰂯";
+    tooltip = false;
+    on-click-right = "${pkgs.kitty}/bin/kitty --class bluetooth-manager --hold sh -c bluetuith";
+   };
 in {
   programs.waybar = {
     enable = true;
@@ -104,7 +109,7 @@ in {
         position = "bottom"; 
         modules-left = [ "memory" "cpu" "temperature" "network" ];
         modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "tray" "pulseaudio" ];
+        modules-right = [ "tray" "bluetooth" "pulseaudio" ];
         tray = {
           spacing = 7;
         };
