@@ -12,8 +12,10 @@
       "docker-desktop"
       "insomnia"
       "intellij-idea-ce"
+      "visual-studio-code"
 
       "discord"
+      "google-chrome"
       "intune-company-portal"
       "microsoft-office"
       "microsoft-teams"
