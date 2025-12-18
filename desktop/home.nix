@@ -26,6 +26,7 @@
       tor-browser
       vscodium # remember to install Nix IDE and Catppuccin Icons
       yt-dlp
+      zoom-us
     ]
     ++ (with inputs; [
       zen-browser.packages.${pkgs.system}.default
