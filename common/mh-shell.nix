@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -23,6 +24,7 @@
   # settings and functioalities
   programs.zsh = {
     # some are set in m-system.nix
+    dotDir = config.home.homeDirectory;
     autocd = true;
     historySubstringSearch.enable = true;
     sessionVariables = {

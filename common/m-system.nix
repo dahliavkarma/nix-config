@@ -1,6 +1,5 @@
 {
   inputs,
-  system,
   username,
   pkgs,
   ...
