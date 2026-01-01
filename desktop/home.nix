@@ -7,7 +7,6 @@
   imports = [
     ./mh-looks.nix
     ./mh-shell.nix
-    # ./mh-work.nix
   ];
   home.packages =
     with pkgs;

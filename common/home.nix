@@ -8,6 +8,7 @@
   # installations & configurations
   imports = [
     inputs.nvf.homeManagerModules.default
+    inputs.zen-browser.homeModules.beta
     ./mh-shell.nix
     ./mh-vim.nix
   ];
