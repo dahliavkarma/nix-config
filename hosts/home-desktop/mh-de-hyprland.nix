@@ -25,7 +25,7 @@ in
       "$terminal" = "${pkgs.kitty}/bin/kitty";
       "$fileManager" = "${pkgs.nautilus}/bin/nautilus";
       "$menu" = "${pkgs.wofi}/bin/wofi";
-      "$browser" = "${inputs.zen-browser.packages.${pkgs.system}.default}/bin/zen";
+      "$browser" = "${inputs.zen-browser.packages.${pkgs.system}.default}/bin/zen-beta";
       "$screenshot" = "${pkgs.grim}/bin/grim -t png -g \"$(${pkgs.slurp}/bin/slurp -w 0)\" - | wl-copy";
       "$editScreenshot" = "${pkgs.wl-clipboard-rs}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -";
       "$clipboardHist" = "${pkgs.copyq}/bin/copyq show";
