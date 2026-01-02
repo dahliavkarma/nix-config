@@ -109,7 +109,7 @@ in {
         position = "bottom"; 
         modules-left = [ "memory" "cpu" "temperature" "network" ];
         modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "tray" "bluetooth" "pulseaudio" ];
+        modules-right = [ "tray" "pulseaudio" ];
         tray = {
           spacing = 7;
         };
