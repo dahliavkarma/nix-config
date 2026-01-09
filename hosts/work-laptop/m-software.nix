@@ -4,7 +4,6 @@
 }: 
 {
   environment.systemPackages = with pkgs; [
-    kitty
     localsend
     vscodium
   ];
@@ -19,6 +18,7 @@
       "iina"
       "karabiner-elements"
       "kate"
+      "kitty"
       "nextcloud"
       "raycast"
       "siyuan"
