@@ -60,6 +60,20 @@
             position = 101;
             workspace = spaces.Default.id;
           };
+          "Dr. Scott Eilers" = {
+            id = "8362718e-5105-4ac5-843b-3a2d282697d0";
+            url = "https://www.youtube.com/@DrScottEilers/videos";
+            isEssential = false;
+            position = 102;
+            workspace = spaces.Default.id;
+          };
+          "HealthyGamerGG" = {
+            id = "04b855f6-5b02-4ae3-82ca-c674c2cd01ff";
+            url = "https://www.youtube.com/@HealthyGamerGG/videos";
+            isEssential = false;
+            position = 103;
+            workspace = spaces.Default.id;
+          };
           "Hebrew" = {
             id = "d85a9026-1458-4db6-b115-346746bcc692";
             workspace = spaces.Languages.id;
