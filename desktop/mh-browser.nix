@@ -146,6 +146,24 @@
             url = "https://www.youtube.com/playlist?list=PLt6NoCieiwOxD7wNZMa79LrKeJ3yJInRT";
             position = 226;
           };
+          "Absorb Textbooks" = {
+            id = "2dd03669-17c1-4973-8f51-230b1fbd9b11";
+            workspace = spaces.Studies.id;
+            url = "https://www.youtube.com/watch?v=nqYmmZKY4sA";
+            position = 301;
+          };
+          "Absorb Everything You Study" = {
+            id = "1a8199ad-6aae-4e9c-80cb-ad938741f0ee";
+            workspace = spaces.Studies.id;
+            url = "https://www.youtube.com/watch?v=8ciQbxGcrQM";
+            position = 302;
+          };
+          "Remembering What You Read" = {
+            id = "c34913fb-c8e2-4791-a4d5-464281ad7172";
+            workspace = spaces.Studies.id;
+            url = "https://www.youtube.com/watch?v=4_a0ME65wAQ";
+            position = 304;
+          };
         };
       in
       {
