@@ -12,6 +12,7 @@
       "docker-desktop"
       "insomnia"
       "intellij-idea-ce"
+      "microsoft-azure-storage-explorer"
       "visual-studio-code"
 
       "discord"
