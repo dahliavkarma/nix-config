@@ -13,6 +13,7 @@
       "insomnia"
       "intellij-idea-ce"
       "microsoft-azure-storage-explorer"
+      "postman"
       "visual-studio-code"
 
       "discord"
