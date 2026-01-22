@@ -11,7 +11,7 @@
     eza
     nh
     nixd
-    nixfmt-rfc-style
+    nixfmt
     p7zip
     ripgrep-all
     tldr
