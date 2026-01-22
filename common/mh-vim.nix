@@ -1,4 +1,6 @@
 {
+  config,
+  pkgs,
   ...
 }:
 {
@@ -33,7 +35,40 @@
           html.enable = true;
           lua.enable = true;
         };
+
+        extraPackages = with pkgs; [
+          nodePackages.prettier
+        ];
+        lazy = {
+          enable = true;
+          plugins = {
+            ${pkgs.vimPlugins.autoclose-nvim.pname} = {
+              package = pkgs.vimPlugins.autoclose-nvim;
+              after = "require('autoclose').setup()";
+            };
+            ${pkgs.vimPlugins.ale.pname} = {
+              package = pkgs.vimPlugins.ale;
+            };
+          };
+        };
+
+        globals = {
+          ale_fix_on_save = 1;
+          ale_fixers = {
+            javascript = [ "prettier" ];
+            typescript = [ "prettier" ];
+            typescriptreact = [ "prettier" ];
+            css = [ "prettier" ];
+            html = [ "prettier" ];
+            json = [ "prettier" ];
+            markdown = [ "prettier" ];
+            "*" = [ "remove_trailing_lines" ];
+          };
+          # ale_linters_explicit = 1;
+          # ale_disable_lsp = 1; 
+        };
       };
     };
   };
 }
+
