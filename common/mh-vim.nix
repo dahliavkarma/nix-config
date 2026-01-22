@@ -8,6 +8,10 @@
       vim = {
         viAlias = true;
         vimAlias = true;
+        options = {
+          tabstop = 2;
+          shiftwidth = 2; 
+        };
 
         statusline.lualine.enable = true;
         telescope.enable = true;
