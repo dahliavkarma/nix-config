@@ -8,12 +8,14 @@
   homebrew = {
     casks = [
       "azure-data-studio"
+      "cursor"
       "dbeaver-community"
       "docker-desktop"
       "insomnia"
       "intellij-idea-ce"
       "microsoft-azure-storage-explorer"
       "postman"
+      "sourcetree"
       "visual-studio-code"
 
       "discord"
