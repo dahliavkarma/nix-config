@@ -59,7 +59,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    mullvad-closest
+    mullvad-compass
   ];
 
   services.tailscale = {
