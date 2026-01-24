@@ -12,14 +12,17 @@
         vimAlias = true;
         options = {
           tabstop = 2;
-          shiftwidth = 2; 
+          shiftwidth = 2;
         };
 
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
 
-        lsp.enable = true;
+        lsp = {
+          enable = true;
+          formatOnSave = true;
+        };
         treesitter.enable = true;
 
         clipboard = {
@@ -28,12 +31,31 @@
         };
 
         languages = {
-          nix.enable = true;
-          ts.enable = true;
-          python.enable = true;
-          markdown.enable = true;
-          html.enable = true;
+          html = {
+            enable = true;
+            lsp.servers = [ "emmet-ls" ];
+          };
           lua.enable = true;
+          markdown = {
+            enable = true;
+            extensions.markview-nvim = {
+                enable = true;
+              };
+            format.enable = true;
+          };
+          nix = {
+            enable = true;
+            format = {
+              enable = true;
+              type = ["nixfmt"];
+            };
+            lsp.servers = ["nixd"];
+          };
+          python.enable = true;
+          ts = {
+            enable = true;
+            format.enable = false;
+          };
         };
 
         extraPackages = with pkgs; [
@@ -65,10 +87,9 @@
             "*" = [ "remove_trailing_lines" ];
           };
           # ale_linters_explicit = 1;
-          # ale_disable_lsp = 1; 
+          # ale_disable_lsp = 1;
         };
       };
     };
   };
 }
-
