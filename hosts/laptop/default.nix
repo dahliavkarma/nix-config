@@ -8,7 +8,7 @@
     ./m-boot.nix
     # ./m-gnome.nix
     ./m-hardware.nix
-    ./m-kde.nix
+    # ./m-kde.nix
   ];
   nixpkgs.overlays = [
     (final: prev: {
