@@ -18,8 +18,9 @@ in
       debug.disable_logs = false;
       # xwayland.force_zero_scaling = true; # steam might run pixelated when false but most X11 apps won't scale when true
       monitor = [
-        "HDMI-A-1, 3840x2160@60, 0x0, 2"
-        "DP-3, 3840x2160@60, 1920x0, 2"
+        # "HDMI-A-1, 3840x2160@60, 0x0, 2"
+        # "DP-3, 3840x2160@60, 1920x0, 2"
+        "DP-3, 3840x2160@60, 0x0, 2"
       ];
       ### PROGRAMS ###
       "$terminal" = "${pkgs.kitty}/bin/kitty";
@@ -30,7 +31,7 @@ in
       "$editScreenshot" = "${pkgs.wl-clipboard-rs}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -";
       "$clipboardHist" = "${pkgs.copyq}/bin/copyq show";
       ### AUTOSTART ###
-      exec-once = ''${startupScript}/bin/start'';
+      exec-once = "${startupScript}/bin/start";
       ### WORKSPACES ###
       workspace = [
         "1, monitor:HDMI-A-1, persistent:true"
