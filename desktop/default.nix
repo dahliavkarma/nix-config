@@ -8,6 +8,7 @@
     inputs.xremap-flake.nixosModules.default
     ./m-ime.nix
     ./m-io.nix # printer, scanner, xserver, keyboard
+    ./m-kde.nix
     ./m-looks.nix
     ./m-remap.nix
     # ./m-work.nix
