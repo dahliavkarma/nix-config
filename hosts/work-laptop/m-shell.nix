@@ -16,6 +16,7 @@
     FLAKE = "/Users/user/nix-config";
     NH_FLAKE = "/Users/user/nix-config";
     NH_DARWIN_FLAKE = "/Users/user/nix-config";
+    PATH = "$HOME/.local/bin:$PATH";
   };
 
 }
