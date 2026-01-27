@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -78,6 +77,7 @@
           ale_fix_on_save = 1;
           ale_fixers = {
             javascript = [ "prettier" ];
+            javascriptreact = [ "prettier" ];
             typescript = [ "prettier" ];
             typescriptreact = [ "prettier" ];
             css = [ "prettier" ];
