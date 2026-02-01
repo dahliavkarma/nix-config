@@ -9,6 +9,7 @@
   imports = [
     inputs.nvf.homeManagerModules.default
     inputs.zen-browser.homeModules.beta
+    inputs.plasma-manager.homeModules.plasma-manager
     ./mh-shell.nix
     ./mh-vim.nix
   ];

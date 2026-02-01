@@ -18,7 +18,7 @@
     # plasma-browser-integration
     konsole
     # (lib.getBin qttools) # Expose qdbus in PATH
-    ark
+    # ark
     elisa
     # gwenview
     # okular

@@ -5,6 +5,7 @@
 {
   imports = [
     ./mh-browser.nix
+    ./mh-kde.nix
     ./mh-looks.nix
     ./mh-shell.nix
   ];
