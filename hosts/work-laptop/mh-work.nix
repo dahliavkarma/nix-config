@@ -13,7 +13,7 @@
       enable = true;
     };
   };
-  home.sessionPath = [
-    "/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
-  ];
+  # home.sessionPath = [
+  #   "/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
+  # ];
 }
