@@ -24,7 +24,6 @@
       "siyuan"
       "tailscale"
       "ungoogled-chromium"
-      "zen"
       "zotero"
     ];
     masApps = {

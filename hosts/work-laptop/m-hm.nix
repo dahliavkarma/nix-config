@@ -1,7 +1,6 @@
 {
   inputs, 
   username, 
-  hostname, 
   lib, 
   ...
 }: 

@@ -43,6 +43,7 @@
       noto-fonts
       maple-mono.NF-CN
       nerd-fonts.iosevka
+      open-dyslexic
     ];
     fontconfig.defaultFonts.monospace = [
       "Iosevka Nerd Font"
