@@ -11,6 +11,7 @@
       "cursor"
       "dbeaver-community"
       "docker-desktop"
+      "firefox"
       "insomnia"
       "intellij-idea-ce"
       "microsoft-azure-storage-explorer"
