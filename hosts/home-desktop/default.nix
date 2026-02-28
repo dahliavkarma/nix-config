@@ -6,8 +6,9 @@
     ../../common
     ../../desktop
     ./m-boot.nix
-    # ./m-de-components.nix
-    # ./m-de-hyprland.nix
+    ./m-de-components.nix
+    ./m-de-hyprland.nix
+    ./mh-dev.nix
     ./m-gaming.nix
     ./m-guitar.nix
     ./m-remap.nix
