@@ -19,6 +19,7 @@
       "karabiner-elements"
       "kate"
       "kitty"
+      "mullvad-vpn"
       "nextcloud"
       "raycast"
       "siyuan"
