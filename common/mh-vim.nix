@@ -38,17 +38,17 @@
           markdown = {
             enable = true;
             extensions.markview-nvim = {
-                enable = true;
-              };
+              enable = true;
+            };
             format.enable = true;
           };
           nix = {
             enable = true;
             format = {
               enable = true;
-              type = ["nixfmt"];
+              type = [ "nixfmt" ];
             };
-            lsp.servers = ["nixd"];
+            lsp.servers = [ "nixd" ];
           };
           python.enable = true;
           ts = {
@@ -57,9 +57,6 @@
           };
         };
 
-        extraPackages = with pkgs; [
-          nodePackages.prettier
-        ];
         lazy = {
           enable = true;
           plugins = {

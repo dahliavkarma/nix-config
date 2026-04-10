@@ -15,9 +15,9 @@
   };
   environment.systemPackages = with pkgs; [
     # some utilities
-    xorg.xev
-    xorg.xinit
-    xorg.xrandr
+    xev
+    xinit
+    xrandr
   ];
 
   # configure keymap in X11
