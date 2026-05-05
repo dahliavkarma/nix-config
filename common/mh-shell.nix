@@ -86,7 +86,7 @@
     matchBlocks = {
       homelab = {
         host = "homelab";
-        hostname = "192.168.0.52";
+        hostname = "192.168.151.11";
         addKeysToAgent = "yes";
         forwardAgent = true;
       };
