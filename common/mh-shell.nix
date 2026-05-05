@@ -105,4 +105,8 @@
     };
   };
 
+  home.packages = with pkgs; [
+    inetutils
+  ];
+
 }
