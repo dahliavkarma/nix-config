@@ -105,6 +105,11 @@
     };
   };
 
+  programs.ripgrep = {
+    enable = true;
+    package = pkgs.ripgrep-all;
+  };
+
   home.packages = with pkgs; [
     inetutils
   ];
