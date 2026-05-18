@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -12,6 +13,7 @@ in
     lm_sensors # for gnome vitals
   ];
   gtk.enable = true;
+  gtk.gtk4.theme = config.gtk.theme;
   programs.gnome-shell = {
     enable = true;
     extensions = [

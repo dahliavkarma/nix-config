@@ -71,6 +71,7 @@
       "*.swp"
       ".stfolder/"
     ];
+    signing.format = null;
     # settings = {
     #   user = {
     #     name = "dahliavkarma";
