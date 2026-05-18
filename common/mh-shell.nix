@@ -92,7 +92,7 @@
       };
       home-desktop = {
         host = "home-desktop";
-        hostname = "192.168.0.50";
+        hostname = "192.168.151.1s";
         addKeysToAgent = "yes";
         forwardAgent = true;
       };
