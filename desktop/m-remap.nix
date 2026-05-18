@@ -49,14 +49,29 @@
         };
       }
       {
-        name = "swap left ctrl & alt";
+        name = "alt-win-control for wireless keyboard";
+        remap = {
+          "LeftCtrl" = "LeftAlt";
+          "LeftAlt" = "LeftMeta";
+          "LeftMeta" = "LeftCtrl";
+        };
+        device.only = [
+          "Lofree"
+        ];
+      }
+      {
+        name = "swap left ctrl & alt for thinkpad";
         remap = {
           "LeftCtrl" = "LeftAlt";
           "LeftAlt" = "LeftCtrl";
         };
+        device.only = [
+          "Thinkpad"
+          "TrackPoint"
+        ];
       }
       {
-        name = "lower right alt-home-end";
+        name = "lower right alt-home-end for thinkpad";
         remap = {
           "SysRq" = "Home"; # yes, PrtSc key is actually SysRq
           "RightCtrl" = "End";
