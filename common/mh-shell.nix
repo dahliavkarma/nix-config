@@ -110,6 +110,10 @@
     package = pkgs.ripgrep-all;
   };
 
+  programs.claude-code = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     inetutils
   ];
