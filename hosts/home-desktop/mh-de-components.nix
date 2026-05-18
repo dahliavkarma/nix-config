@@ -14,6 +14,7 @@
     kdePackages.kate
     kdePackages.okular
     libreoffice
+    losslesscut-bin
     peazip
     scantailor-advanced
     zotero
