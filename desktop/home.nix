@@ -20,6 +20,7 @@
     mpv
     musescore
     nextcloud-client
+    obsidian
     # siyuan
     tor-browser
     vscodium # remember to install Nix IDE and Catppuccin Icons
