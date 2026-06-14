@@ -51,7 +51,7 @@
             lsp.servers = [ "nixd" ];
           };
           python.enable = true;
-          ts = {
+          typescript = {
             enable = true;
             format.enable = false;
           };
