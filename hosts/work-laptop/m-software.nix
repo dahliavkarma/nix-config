@@ -22,7 +22,7 @@
       "mullvad-vpn"
       "nextcloud"
       "raycast"
-      "siyuan"
+      "obsidian"
       "tailscale"
       "ungoogled-chromium"
       "zotero"
