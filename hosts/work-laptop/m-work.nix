@@ -14,6 +14,7 @@
       "firefox"
       "insomnia"
       "intellij-idea-ce"
+      "linear"
       "microsoft-azure-storage-explorer"
       "postman"
       "sourcetree"
