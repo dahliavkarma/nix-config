@@ -30,6 +30,5 @@
     masApps = {
       Bitwarden = 1352778147; # for biometrics
     };
-    onActivation.cleanup = "zap";
   };
 }
