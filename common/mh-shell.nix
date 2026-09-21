@@ -84,7 +84,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       homelab = {
         host = "homelab";
         hostname = "192.168.151.11";
