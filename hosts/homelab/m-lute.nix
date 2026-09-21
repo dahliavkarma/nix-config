@@ -1,13 +1,14 @@
 {
+  username,
   ...
 }:
 {
-  virtualisation.oci-containers."lute-container" = {
+  virtualisation.oci-containers.containers."lute-container" = {
     image = "jzohrab/lute3:latest";
     ports = [ "5001:5001" ];
     volumes = [
-      "./data:/lute_data"
-      "./backups:/lute_backup"
+      "/home/${username}/lute/data:/lute_data"
+      "/mnt/backup/lute:/lute_backup"
     ];
   };
 
