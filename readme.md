@@ -36,7 +36,7 @@
 - [x] set up fingerprint ~~set up flatpak~~ actually you know what I probably
       don't need that
 - [x] add alias for emptying trash
-- [ ] remove actual
+- [x] remove actual
 - [x] set up backup disk automount for homelab
 
 # Notes to yourself

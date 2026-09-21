@@ -6,7 +6,6 @@
     ../../common
     ./m-boot.nix
     ./m-container.nix
-    ./m-finance.nix
     ./m-lute.nix
     ./m-photos.nix
     ./m-server.nix
