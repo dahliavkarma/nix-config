@@ -45,4 +45,6 @@
     "empty-trash" = "pushd ~/.local/share/Trash && rm -rf .";
   };
 
+  services.blueman-applet.enable = true;
+
 }
