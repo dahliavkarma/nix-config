@@ -46,11 +46,11 @@
       extraConfig = ''
         bind tailscale/nextcloud-admin
         tailscale_auth
-          reverse_proxy https://localhost:8080 {
-              transport http {
-                  tls_insecure_skip_verify
-              }
-          }
+        reverse_proxy https://localhost:8080 {
+            transport http {
+                tls_insecure_skip_verify
+            }
+        }
       '';
     };
   };
