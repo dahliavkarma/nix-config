@@ -28,6 +28,11 @@
     ];
   };
 
+  fileSystems."/mnt/backup" = {
+    device = "/dev/disk/by-uuid/a60cf7c2-3696-4938-9621-457675ba2a0f";
+    fsType = "btrfs";
+  };
+
   swapDevices = [
     { device = "/dev/disk/by-uuid/8668b273-5af8-4783-bee4-a6467063afc1"; }
   ];
