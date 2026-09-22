@@ -30,7 +30,7 @@
   network = {
     format-wifi = "{signalStrength}% ";
     format-ethernet = "{ipaddr}/{cidr} 󰛳";
-    tooltip-format = "{ifname} via {gwaddr} ";
+    tooltip-format = "{ifname} via {gwaddr}";
     format-linked = "{ifname} (No IP) 󰅛";
     format-disconnected = "Disconnected ⚠";
   };
