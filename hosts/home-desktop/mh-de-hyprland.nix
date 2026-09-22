@@ -15,6 +15,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
+    systemd.enable = false;
     settings = {
       debug.disable_logs = false;
       # xwayland.force_zero_scaling = true; # steam might run pixelated when false but most X11 apps won't scale when true
