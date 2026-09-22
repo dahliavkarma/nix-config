@@ -2,11 +2,12 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
 }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar &
+    ${config.programs.waybar.package}/bin/waybar &
     ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all &
     ${pkgs.copyq}/bin/copyq --start-server &
   '';
@@ -109,17 +110,11 @@ in
       ];
 
       ### WORKSPACES ###
-      workspace_rule =
-        (map (n: {
-          workspace = toString n;
-          monitor = "HDMI-A-1";
-          persistent = true;
-        }) (lib.range 1 10))
-        ++ (map (n: {
-          workspace = toString n;
-          monitor = "DP-3";
-          persistent = true;
-        }) (lib.range 11 20));
+      workspace_rule = map (n: {
+        workspace = toString n;
+        monitor = "DP-3";
+        persistent = true;
+      }) (lib.range 1 9);
 
       ### WINDOWS ###
       window_rule = [
@@ -398,12 +393,10 @@ in
       hl.bind(mod .. " + CTRL + mouse_up", hl.dsp.window.move({ workspace = "r+1" }))
       hl.bind(mod .. " + CTRL + mouse_down", hl.dsp.window.move({ workspace = "r-1" }))
 
-      -- workspace switching (numbers/letters -> workspaces 1-20)
+      -- workspace switching (numbers -> workspaces 1-9)
       local workspace_keys = {
         "1", "2", "3", "4", "5",
-        "q", "w", "e", "r", "t",
-        "a", "s", "d", "f", "g",
-        "z", "x", "c", "v", "b",
+        "6", "7", "8", "9",
       }
       for i, key in ipairs(workspace_keys) do
         local ws = tostring(i)
