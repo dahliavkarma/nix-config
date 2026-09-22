@@ -21,7 +21,6 @@
 
     dunst
     libnotify
-    waybar
 
     grim # screenshot
     slurp # screen area selection
