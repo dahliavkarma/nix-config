@@ -74,7 +74,7 @@
     menu = "on-click";
     menu-file = ./r-de-power.xml;
     menu-actions = {
-      "logout" = "uwsm stop && exit";
+      "logout" = "uwsm stop";
       "shutdown" = "shutdown";
       "reboot" = "reboot";
       "suspend" = "systemctl suspend";
