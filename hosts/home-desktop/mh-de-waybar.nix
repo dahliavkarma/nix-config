@@ -21,9 +21,10 @@
     min-length = 6;
   };
   temperature = {
-    critical-threshold = 40;
+    critical-threshold = 80;
     format = "{temperatureC}°C {icon}";
-    format-icons = ["" "" ""];
+    format-icons = ["" "" ""];
+    format-critical = "{temperatureC}°C ";
     tooltip = false;
   };
   network = {
@@ -69,7 +70,7 @@
     };
   };
   "custom/power" = {
-    format = "⏻ ";
+    format = "⏻";
     tooltip = false;
     menu = "on-click";
     menu-file = ./r-de-power.xml;
