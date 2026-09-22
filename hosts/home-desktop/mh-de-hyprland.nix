@@ -14,9 +14,7 @@ let
   terminal = "${pkgs.kitty}/bin/kitty";
   fileManager = "${pkgs.nautilus}/bin/nautilus";
   menu = "${pkgs.wofi}/bin/wofi";
-  browser = "${
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-  }/bin/zen-beta";
+  browser = "${inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen-beta";
   screenshot = "${pkgs.grim}/bin/grim -t png -g \"$(${pkgs.slurp}/bin/slurp -w 0)\" - | wl-copy";
   editScreenshot = "${pkgs.wl-clipboard-rs}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -";
   clipboardHist = "${pkgs.copyq}/bin/copyq show";
@@ -154,8 +152,14 @@ in
             {
               type = "bezier";
               points = [
-                [ 0.23 1 ]
-                [ 0.32 1 ]
+                [
+                  0.23
+                  1
+                ]
+                [
+                  0.32
+                  1
+                ]
               ];
             }
           ];
@@ -166,8 +170,14 @@ in
             {
               type = "bezier";
               points = [
-                [ 0.65 0.05 ]
-                [ 0.36 1 ]
+                [
+                  0.65
+                  0.05
+                ]
+                [
+                  0.36
+                  1
+                ]
               ];
             }
           ];
@@ -178,8 +188,14 @@ in
             {
               type = "bezier";
               points = [
-                [ 0 0 ]
-                [ 1 1 ]
+                [
+                  0
+                  0
+                ]
+                [
+                  1
+                  1
+                ]
               ];
             }
           ];
@@ -190,8 +206,14 @@ in
             {
               type = "bezier";
               points = [
-                [ 0.5 0.5 ]
-                [ 0.75 1.0 ]
+                [
+                  0.5
+                  0.5
+                ]
+                [
+                  0.75
+                  1.0
+                ]
               ];
             }
           ];
@@ -202,8 +224,14 @@ in
             {
               type = "bezier";
               points = [
-                [ 0.15 0 ]
-                [ 0.1 1 ]
+                [
+                  0.15
+                  0
+                ]
+                [
+                  0.1
+                  1
+                ]
               ];
             }
           ];
@@ -361,8 +389,8 @@ in
       hl.bind(mod .. " + ALT + right", hl.dsp.focus({ workspace = "r+1" }))
       hl.bind(mod .. " + prior", hl.dsp.focus({ workspace = "r-1" }))
       hl.bind(mod .. " + next", hl.dsp.focus({ workspace = "r+1" }))
-      hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "r+1" }))
-      hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "r-1" }))
+      hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
+      hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "r-1" }))
 
       -- shift window to workspace
       hl.bind(mod .. " + CTRL + prior", hl.dsp.window.move({ workspace = "r-1" }))
