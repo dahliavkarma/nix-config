@@ -1,10 +1,10 @@
-{ 
+{
   pkgs,
   lib,
-  ... 
+  ...
 }: let
   layer = "top";
-  height = 32; 
+  height = 32;
   margin = "9px 16px";
   reload_style_on_change = true;
   "custom/slash".format = "/";
@@ -21,47 +21,61 @@
     min-length = 6;
   };
   temperature = {
-    critical-threshold = 40;
+    critical-threshold = 80;
     format = "{temperatureC}°C {icon}";
-    format-icons = ["" "" ""];
+    format-icons = ["" "" "" "" ""];
+    format-critical = "{temperatureC}°C ";
     tooltip = false;
   };
   network = {
     format-wifi = "{signalStrength}% ";
     format-ethernet = "{ipaddr}/{cidr} 󰛳";
-    tooltip-format = "{ifname} via {gwaddr} ";
+    tooltip-format = "{ifname} via {gwaddr}";
     format-linked = "{ifname} (No IP) 󰅛";
     format-disconnected = "Disconnected ⚠";
   };
+  # Waybar 0.15.0 (the tagged release in nixpkgs) predates upstream PR #5013
+  # ("fix(hyprland/workspaces): adapt dispatch commands for Lua IPC
+  # protocol", merged 2026-05-04, commit 0594574), which is what actually
+  # fixes on-click "activate" under Hyprland Lua config (configType = "lua"
+  # in mh-de-hyprland.nix). No tagged release includes it yet, so this
+  # builds waybar straight from a recent master commit instead of vendoring
+  # a third-party module or reimplementing the workspace widget ourselves.
+  waybarUnstable = (pkgs.waybar.override { cavaSupport = false; }).overrideAttrs (old: {
+    version = "0.15.0-unstable-2026-09-20";
+    src = pkgs.fetchFromGitHub {
+      owner = "Alexays";
+      repo = "Waybar";
+      rev = "3672eee03a6abfe883310b92ddbcf3300ae43b2d";
+      hash = "sha256-dc2tsgfAKqnZ/w369G6mYkfeIathdWLeyh+xgBxERU8=";
+    };
+    # versionCheckHook expects `waybar --version` to report old.version;
+    # this is an untagged snapshot, so there is nothing meaningful to check.
+    doInstallCheck = false;
+    # New since nixpkgs' pinned 0.15.0: a WWAN/cellular module gated on
+    # ModemManager's mm-glib, which nixpkgs' waybar doesn't build against
+    # and this desktop has no use for.
+    mesonFlags = (old.mesonFlags or []) ++ ["-Dwwan=disabled"];
+  });
   "hyprland/workspaces" = {
     all-outputs = false;
     on-click = "activate";
-    on-scroll-up = "hyprctl dispatch workspace r-1";
-    on-scroll-down = "hyprctl dispatch workspace r+1";
+    on-scroll-up = "hyprctl dispatch 'hl.dsp.focus({workspace = \"r-1\"})'";
+    on-scroll-down = "hyprctl dispatch 'hl.dsp.focus({workspace = \"r+1\"})'";
     format = "{icon}";
     format-icons = {
       "active" = "";
       "default" = "";
       "empty" = "";
-      # "1" = "01";
-      # "2" = "02";
-      # "3" = "03";
-      # "4" = "04";
-      # "5" = "05";
-      # "6" = "06";
-      # "7" = "07";
-      # "8" = "08";
-      # "9" = "09";
-      # "10" = "10";
     };
   };
   "custom/power" = {
-    format = "⏻ ";
+    format = "⏻";
     tooltip = false;
     menu = "on-click";
     menu-file = ./r-de-power.xml;
     menu-actions = {
-      "logout" = "uwsm stop && exit";
+      "logout" = "uwsm stop";
       "shutdown" = "shutdown";
       "reboot" = "reboot";
       "suspend" = "systemctl suspend";
@@ -88,7 +102,8 @@
 in {
   programs.waybar = {
     enable = true;
-    style = ./r-de-waybar.css; 
+    package = waybarUnstable;
+    style = ./r-de-waybar.css;
     settings = {
       topBar = {
         name = "topBar";
@@ -106,7 +121,7 @@ in {
       bottomBar= {
         name = "bottomBar";
         inherit layer height margin reload_style_on_change memory cpu temperature network "hyprland/workspaces" pulseaudio;
-        position = "bottom"; 
+        position = "bottom";
         modules-left = [ "memory" "cpu" "temperature" "network" ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [ "tray" "pulseaudio" ];
@@ -120,10 +135,11 @@ in {
     lm_sensors
     pulseaudioFull
     pavucontrol
+    jq # pulseaudio module above shells out to a bare `jq`, not otherwise declared
   ];
   stylix.targets.waybar.enable = false;
   programs.zsh.zsh-abbr.abbreviations = {
-    "waybar" = "hyprctl dispatch exec waybar";
-    "restart-waybar" = "pkill waybar && hyprctl dispatch exec waybar";
+    "waybar" = "hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'";
+    "restart-waybar" = "pkill waybar && hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'";
   };
 }

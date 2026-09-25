@@ -10,7 +10,7 @@
     ./mh-shell.nix
   ];
   home.packages = with pkgs; [
-    # anki
+    anki
     discord
     ffmpeg
     gimp

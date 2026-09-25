@@ -21,7 +21,6 @@
 
     dunst
     libnotify
-    waybar
 
     grim # screenshot
     slurp # screen area selection
@@ -44,5 +43,7 @@
   programs.zsh.zsh-abbr.abbreviations = {
     "empty-trash" = "pushd ~/.local/share/Trash && rm -rf .";
   };
+
+  services.blueman-applet.enable = true;
 
 }

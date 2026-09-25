@@ -1,5 +1,6 @@
 {
   pkgs,
+  username, 
   ...
 }:
 {
@@ -35,4 +36,5 @@
 
   security.pam.services.login.kwallet.enable = true;
   security.pam.services.sddm.kwallet.enable = true;
+  security.pam.services.${username}.kwallet.enable = true;
 }

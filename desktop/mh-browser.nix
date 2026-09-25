@@ -28,6 +28,17 @@
     };
 
     profiles."default" =
+      let
+        spaces = {
+          "Default" = {
+            id = "ccb9f6ed-24c4-499a-b5b2-e3e5d52fbad5";
+            icon = "";
+            position = 1000;
+          };
+        };
+        pins = {
+        };
+      in
       {
         id = 0;
         isDefault = true;

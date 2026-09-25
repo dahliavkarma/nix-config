@@ -24,6 +24,7 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
+    config.hyprland."org.freedesktop.impl.portal.Secret" = "kwallet";
   };
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

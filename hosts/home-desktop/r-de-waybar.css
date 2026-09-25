@@ -34,3 +34,7 @@ window>box {
 .hosting-monitor {
   padding: 0 7px;
 }
+
+#temperature.critical {
+  background-color: #C49EA0;
+}
