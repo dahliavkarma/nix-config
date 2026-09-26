@@ -54,6 +54,8 @@
           "LeftCtrl" = "LeftAlt";
           "LeftAlt" = "LeftMeta";
           "LeftMeta" = "LeftCtrl";
+          "RightMeta" = "RightAlt";
+          "RightAlt" = "RightCtrl";
         };
         device.only = [
           "Lofree"
