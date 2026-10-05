@@ -1,11 +1,16 @@
 {
   pkgs,
-  username,
   ...
 }:
 {
 
   homebrew = {
+    taps = [
+      "k1LoW/tap"
+    ];
+    brews = [
+      "k1LoW/tap/mo"
+    ];
     casks = [
       "azure-data-studio"
       "cursor"
@@ -14,7 +19,7 @@
       "firefox"
       "insomnia"
       "intellij-idea-ce"
-      "linear"
+      "linear-linear"
       "microsoft-azure-storage-explorer"
       "postman"
       "sourcetree"
