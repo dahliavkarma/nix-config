@@ -1,5 +1,4 @@
 {
-  pkgs,
   ...
 }:
 {
@@ -31,6 +30,7 @@
       "microsoft-office"
       "microsoft-teams"
       "notion"
+      "python"
       "slack"
       "zoom"
     ];
@@ -39,8 +39,8 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    azure-cli
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   azure-cli
+  # ];
 
 }
