@@ -13,7 +13,9 @@
       enable = true;
     };
   };
-  # home.sessionPath = [
-  #   "/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
-  # ];
+  home.sessionPath = [
+    # Native Claude Code installer (claude install); must precede Nix-provided claude
+    "$HOME/.local/bin"
+    # "/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
+  ];
 }
