@@ -15,8 +15,4 @@
       "switch" = "sudo darwin-rebuild --flake /Users/user/nix-config switch";
     };
   };
-
-  home.packages = with pkgs; [
-    python3-minimal
-  ];
 }

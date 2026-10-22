@@ -4,11 +4,8 @@
 {
 
   homebrew = {
-    taps = [
-      "k1LoW/tap"
-    ];
     brews = [
-      "k1LoW/tap/mo"
+      "python"
     ];
     casks = [
       "azure-data-studio"
@@ -18,7 +15,7 @@
       "firefox"
       "insomnia"
       "intellij-idea-ce"
-      "linear-linear"
+      "linear"
       "microsoft-azure-storage-explorer"
       "postman"
       "sourcetree"
@@ -30,7 +27,6 @@
       "microsoft-office"
       "microsoft-teams"
       "notion"
-      "python"
       "slack"
       "zoom"
     ];

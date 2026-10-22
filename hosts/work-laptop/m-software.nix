@@ -23,7 +23,7 @@
       "nextcloud"
       "raycast"
       "obsidian"
-      "tailscale"
+      "tailscale-app"
       "ungoogled-chromium"
       "zotero"
     ];
