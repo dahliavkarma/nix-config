@@ -27,8 +27,5 @@
       "ungoogled-chromium"
       "zotero"
     ];
-    masApps = {
-      Bitwarden = 1352778147; # for biometrics
-    };
   };
 }
