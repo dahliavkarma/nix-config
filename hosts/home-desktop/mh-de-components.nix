@@ -17,7 +17,7 @@
     losslesscut-bin
     peazip
     scantailor-advanced
-    zotero
+    # zotero
 
     dunst
     libnotify
