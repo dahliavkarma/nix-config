@@ -9,7 +9,7 @@
   reload_style_on_change = true;
   "custom/slash".format = "/";
   memory = {
-    format = " {}%";
+    format = "  {}%";
     on-click = "${pkgs.kitty}/bin/kitty --class system_monitor --hold sh -c btop";
   };
   cpu = {
@@ -24,15 +24,15 @@
     critical-threshold = 80;
     format = "{icon} {temperatureC}°C";
     format-icons = ["" "" "" "" ""];
-    format-critical = " {temperatureC}°C";
+    format-critical = "  {temperatureC}°C";
     tooltip = false;
   };
   network = {
-    format-wifi = " {signalStrength}%";
-    format-ethernet = "󰛳 {ipaddr}/{cidr}";
+    format-wifi = "  {signalStrength}%";
+    format-ethernet = "󰛳  {ipaddr}/{cidr}";
     tooltip-format = "{ifname} via {gwaddr}";
-    format-linked = "󰅛{ifname} (No IP)";
-    format-disconnected = "⚠ Disconnected";
+    format-linked = "󰅛  {ifname} (No IP)";
+    format-disconnected = "  Disconnected";
   };
   # Waybar 0.15.0 (the tagged release in nixpkgs) predates upstream PR #5013
   # ("fix(hyprland/workspaces): adapt dispatch commands for Lua IPC
