@@ -34,29 +34,6 @@
     format-linked = "󰅛  {ifname} (No IP)";
     format-disconnected = "  Disconnected";
   };
-  # Waybar 0.15.0 (the tagged release in nixpkgs) predates upstream PR #5013
-  # ("fix(hyprland/workspaces): adapt dispatch commands for Lua IPC
-  # protocol", merged 2026-05-04, commit 0594574), which is what actually
-  # fixes on-click "activate" under Hyprland Lua config (configType = "lua"
-  # in mh-de-hyprland.nix). No tagged release includes it yet, so this
-  # builds waybar straight from a recent master commit instead of vendoring
-  # a third-party module or reimplementing the workspace widget ourselves.
-  waybarUnstable = (pkgs.waybar.override { cavaSupport = false; }).overrideAttrs (old: {
-    version = "0.15.0-unstable-2026-09-20";
-    src = pkgs.fetchFromGitHub {
-      owner = "Alexays";
-      repo = "Waybar";
-      rev = "3672eee03a6abfe883310b92ddbcf3300ae43b2d";
-      hash = "sha256-dc2tsgfAKqnZ/w369G6mYkfeIathdWLeyh+xgBxERU8=";
-    };
-    # versionCheckHook expects `waybar --version` to report old.version;
-    # this is an untagged snapshot, so there is nothing meaningful to check.
-    doInstallCheck = false;
-    # New since nixpkgs' pinned 0.15.0: a WWAN/cellular module gated on
-    # ModemManager's mm-glib, which nixpkgs' waybar doesn't build against
-    # and this desktop has no use for.
-    mesonFlags = (old.mesonFlags or []) ++ ["-Dwwan=disabled"];
-  });
   "hyprland/workspaces" = {
     all-outputs = false;
     on-click = "activate";
@@ -102,7 +79,6 @@
 in {
   programs.waybar = {
     enable = true;
-    package = waybarUnstable;
     style = ./r-de-waybar.css;
     settings = {
       topBar = {
