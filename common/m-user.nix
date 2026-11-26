@@ -18,7 +18,7 @@
       # ssh login keys; for other ssh settings, see m-network.nix and mh-shell.nix
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEMK4Kys6A3fzzJIyQ9yQWC+obkrbvonksO0CXrYswc home-desktop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFSjy+wxbw/FQcivZkoHW61GB7gCufW4HAo0Gsv79rP homelab"
-      # TODO: add the windows tablet's key here (ssh-keygen -t ed25519 -C tablet)
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPb/SePBsIOqh5q77K8kitFsVRN4DV9vcDPT5f0T6KP tablet"
     ];
   };
   nix.settings.allowed-users = [ "@wheel" ];
