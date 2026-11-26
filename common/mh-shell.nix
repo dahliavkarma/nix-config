@@ -87,13 +87,13 @@
     settings = {
       homelab = {
         host = "homelab";
-        hostname = "192.168.151.11";
+        hostname = "192.168.11.13";
         addKeysToAgent = "yes";
         forwardAgent = true;
       };
       home-desktop = {
         host = "home-desktop";
-        hostname = "192.168.151.1s";
+        hostname = "192.168.11.6";
         addKeysToAgent = "yes";
         forwardAgent = true;
       };
