@@ -3,6 +3,22 @@
   pkgs,
   ...
 }:
+let
+  # `services.pipewire.jack.enable` is deprecated, so point JACK clients at
+  # PipeWire's libjack per app (equivalent to launching them via `pw-jack`).
+  withPipewireJack =
+    pkg:
+    pkgs.symlinkJoin {
+      inherit (pkg) pname version meta;
+      paths = [ pkg ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        for bin in $out/bin/*; do
+          wrapProgram "$bin" --prefix LD_LIBRARY_PATH : ${pkgs.pipewire.jack}/lib
+        done
+      '';
+    };
+in
 {
 
   ### Audio Extra
@@ -38,9 +54,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    qjackctl
+    (withPipewireJack qjackctl)
     rtaudio
-    guitarix
+    (withPipewireJack guitarix)
   ];
 
   environment.sessionVariables = {

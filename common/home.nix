@@ -7,7 +7,7 @@
 
   # installations & configurations
   imports = [
-    inputs.nvf.homeManagerModules.default
+    inputs.nvf.homeModules.default
     inputs.zen-browser.homeModules.beta
     inputs.plasma-manager.homeModules.plasma-manager
     ./mh-shell.nix

@@ -5,6 +5,7 @@
 }:
 {
   # home.sessionVariables.MOZ_LEGACY_PROFILES = 1;
+  stylix.targets.zen-browser.profileNames = [ "default" ];
   programs.zen-browser = {
     enable = true;
 

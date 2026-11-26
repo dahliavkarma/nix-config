@@ -1,8 +1,50 @@
 {
+  config,
+  lib,
+  options,
   pkgs,
   ...
 }:
 {
+  imports = [
+    # stylix's nvf target still sets the renamed `vim.statusline.lualine.theme`,
+    # which triggers an eval warning. Until upstream merges the fix
+    # (nix-community/stylix#2497), disable the target and apply the same theme here.
+    # Guarded because stylix only adds its HM module on hosts with stylix enabled.
+    {
+      config = lib.optionalAttrs (options ? stylix) {
+        stylix.targets.nvf.enable = false;
+        programs.nvf.settings.vim = lib.mkIf config.stylix.enable {
+          theme = {
+            enable = true;
+            name = "base16";
+            base16-colors = {
+              inherit (config.lib.stylix.colors.withHashtag)
+                base00
+                base01
+                base02
+                base03
+                base04
+                base05
+                base06
+                base07
+                base08
+                base09
+                base0A
+                base0B
+                base0C
+                base0D
+                base0E
+                base0F
+                ;
+            };
+          };
+          statusline.lualine.setupOpts.options.theme = "base16";
+        };
+      };
+    }
+  ];
+
   programs.nvf = {
     enable = true;
     settings = {
