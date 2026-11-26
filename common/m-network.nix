@@ -31,11 +31,11 @@
     knownHosts = {
       # for authorized keys of the user, see m-user.nix and mh-shell.nix
       homelab = {
-        extraHostNames = [ "192.168.151.11" ];
+        extraHostNames = [ "homelab.silverside-chimera.ts.net" ];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2PYN1SuNVtgpuCtzs2zLIhoXfyIW2qILFnq8wn6X/F";
       };
       home-desktop = {
-        extraHostNames = [ "192.158.0.50" ];
+        extraHostNames = [ "home-desktop.silverside-chimera.ts.net" ];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAr+xkRalWCwJ0mYJrQGFBLGzBuWKMwYjSwwOg+6DT//";
       };
     };
@@ -43,7 +43,10 @@
   services.fail2ban = {
     enable = true;
     maxretry = 10;
-    ignoreIP = [ "192.168.0.0/16" ];
+    ignoreIP = [
+      "192.168.0.0/16"
+      "100.64.0.0/10" # tailnet
+    ];
   };
   programs.ssh.startAgent = true;
 

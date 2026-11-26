@@ -87,13 +87,13 @@
     settings = {
       homelab = {
         host = "homelab";
-        hostname = "192.168.11.13";
+        hostname = "homelab.silverside-chimera.ts.net";
         addKeysToAgent = "yes";
         forwardAgent = true;
       };
       home-desktop = {
         host = "home-desktop";
-        hostname = "192.168.11.6";
+        hostname = "home-desktop.silverside-chimera.ts.net";
         addKeysToAgent = "yes";
         forwardAgent = true;
       };
