@@ -38,10 +38,6 @@
         extraHostNames = [ "192.158.0.50" ];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAr+xkRalWCwJ0mYJrQGFBLGzBuWKMwYjSwwOg+6DT//";
       };
-      laptop = {
-        extraHostNames = [ "192.168.0.41" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBLx+Os6fExGO8/PYzukTsuyLJOnADgO6YTjS76oFmHg";
-      };
     };
   };
   services.fail2ban = {

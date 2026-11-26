@@ -52,10 +52,6 @@
     let
       hosts = {
         # don't forget ssh and ssh-agent settings for each machine
-        laptop = {
-          system = "x86_64-linux";
-          stateVersion = "24.11"; # DO NOT ALTER!
-        };
         home-desktop = {
           system = "x86_64-linux";
           stateVersion = "24.11"; # DO NOT ALTER!
