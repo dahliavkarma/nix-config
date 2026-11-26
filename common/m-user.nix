@@ -23,6 +23,16 @@
   };
   nix.settings.allowed-users = [ "@wheel" ];
   security.sudo.execWheelOnly = true;
+  security.sudo.extraConfig =
+    let
+      bell = builtins.fromJSON ''"\u0007"''; # nix strings have no \a escape
+    in
+    ''
+      # ring the terminal bell when asking for a password, so a forgotten prompt in a background window gets noticed
+      Defaults passprompt="${bell}[sudo] password for %p: "
+      # never time out the password prompt (default is 5 minutes)
+      Defaults passwd_timeout=0
+    '';
   security.pam.sshAgentAuth.enable = true;
 
   # yubikey login (pam_u2f)
