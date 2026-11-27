@@ -13,6 +13,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [ "fbcon=rotate:3" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e3b4a18f-456c-4574-a039-6777117330bb";
