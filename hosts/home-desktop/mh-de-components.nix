@@ -20,6 +20,7 @@
     # zotero
 
     dunst
+    glib # gio
     libnotify
 
     grim # screenshot
@@ -41,7 +42,7 @@
   };
 
   programs.zsh.zsh-abbr.abbreviations = {
-    "empty-trash" = "pushd ~/.local/share/Trash && rm -rf .";
+    "empty-trash" = "gio trash --empty";
   };
 
   services.blueman-applet.enable = true;

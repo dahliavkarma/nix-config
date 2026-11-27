@@ -22,6 +22,7 @@
     enable = true;
     terminal = "kitty";
   };
+  services.gvfs.enable = true; # trash, network locations and phones in nautilus
 
   services.udisks2 = {
     enable = true;
