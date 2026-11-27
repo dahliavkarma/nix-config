@@ -11,7 +11,11 @@
   };
   services.caddy = {
     enable = true;
-    package = pkgs.callPackage ./r-caddy-tailscale.nix { };
+    package = pkgs.caddy.withPlugins {
+      plugins = [ "github.com/tailscale/caddy-tailscale@v0.0.0-20260826180304-de41b249af4f" ];
+      hash = "sha256-UTpKsbriOMTfgG36Y1VL1hPQUNhJzPmTyMUXi0WycAA=";
+    };
+    enableReload = false; # the plugin can't reload, so restart instead
     # acmeCA = "https://acme-v02.api.letsencrypt.org/directory"; # for dev/testing; comment out for production
     # email = "dahliavkarma@gmail.com";
     environmentFile = config.sops.secrets."server/tailscale/authkey".path;
