@@ -12,6 +12,7 @@
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
+  nix.optimise.automatic = true;
   system = {
     primaryUser = "user";
     defaults = {

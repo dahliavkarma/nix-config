@@ -24,6 +24,10 @@
     "nix-command"
     "flakes"
   ];
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 1d";
+  };
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = system;
   system.stateVersion = stateVersion;
