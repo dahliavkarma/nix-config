@@ -54,7 +54,7 @@
     ];
     script = ''
       if ! mountpoint -q /mnt/backup; then
-        problem="Backup disk is not mounted at /mnt/backup. Lute is stopped until it is."
+        problem="Backup disk is not mounted at /mnt/backup. Lute and Immich backups are stopped until it is."
       elif ! btrfs device stats --check /mnt/backup > /dev/null; then
         problem="Backup disk reports errors: $(btrfs device stats /mnt/backup | grep -v ' 0$')
       Once dealt with, clear the counters or this repeats daily: sudo btrfs device stats -z /mnt/backup"
@@ -65,6 +65,16 @@
         -H "Title: homelab backup disk" -H "Priority: high" -H "Tags: warning" \
         -d "$problem" "https://ntfy.sh/$(cat ${config.sops.secrets."server/ntfy/topic".path})"
       exit 1
+    '';
+  };
+  systemd.services."ntfy-failure@" = {
+    serviceConfig.Type = "oneshot";
+    path = [ pkgs.curl ];
+    scriptArgs = "%i";
+    script = ''
+      curl -fsS --retry 10 --retry-all-errors --retry-delay 30 \
+        -H "Title: homelab: $1 failed" -H "Priority: high" -H "Tags: warning" \
+        -d "Details: journalctl -u $1" "https://ntfy.sh/$(cat ${config.sops.secrets."server/ntfy/topic".path})"
     '';
   };
 
