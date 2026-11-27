@@ -12,6 +12,8 @@
     ];
   };
 
+  systemd.services.docker-lute-container.unitConfig.RequiresMountsFor = [ "/mnt/backup" ];
+
   services.caddy.virtualHosts = {
     "lute.silverside-chimera.ts.net" = {
       extraConfig = ''
