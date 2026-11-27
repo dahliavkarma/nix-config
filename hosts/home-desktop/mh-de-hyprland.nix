@@ -366,12 +366,10 @@ in
       hl.bind(mod .. " + V", hl.dsp.exec_cmd("${clipboardHist}"))
 
       -- move window
-      hl.bind(mod .. " + left", hl.dsp.window.move({ direction = "l" }))
-      hl.bind(mod .. " + right", hl.dsp.window.move({ direction = "r" }))
-      hl.bind(mod .. " + up", hl.dsp.window.move({ direction = "u" }))
-      hl.bind(mod .. " + down", hl.dsp.window.move({ direction = "d" }))
-      hl.bind(mod .. " + CTRL + left", hl.dsp.window.move({ monitor = "HDMI-A-1" }))
-      hl.bind(mod .. " + CTRL + right", hl.dsp.window.move({ monitor = "DP-3" }))
+      hl.bind(mod .. " + SHIFT + left", hl.dsp.window.move({ direction = "l" }))
+      hl.bind(mod .. " + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
+      hl.bind(mod .. " + SHIFT + up", hl.dsp.window.move({ direction = "u" }))
+      hl.bind(mod .. " + SHIFT + down", hl.dsp.window.move({ direction = "d" }))
 
       -- alter focus
       hl.bind(mod .. " + ALT + left", hl.dsp.focus({ direction = "l" }))
@@ -380,18 +378,20 @@ in
       hl.bind(mod .. " + ALT + down", hl.dsp.focus({ direction = "d" }))
 
       -- alter focus through workspaces
-      hl.bind(mod .. " + ALT + left", hl.dsp.focus({ workspace = "r-1" }))
-      hl.bind(mod .. " + ALT + right", hl.dsp.focus({ workspace = "r+1" }))
+      hl.bind(mod .. " + left", hl.dsp.focus({ workspace = "r-1" }))
+      hl.bind(mod .. " + right", hl.dsp.focus({ workspace = "r+1" }))
       hl.bind(mod .. " + prior", hl.dsp.focus({ workspace = "r-1" }))
       hl.bind(mod .. " + next", hl.dsp.focus({ workspace = "r+1" }))
       hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
       hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "r-1" }))
 
       -- shift window to workspace
+      hl.bind(mod .. " + CTRL + left", hl.dsp.window.move({ workspace = "r-1" }))
+      hl.bind(mod .. " + CTRL + right", hl.dsp.window.move({ workspace = "r+1" }))
       hl.bind(mod .. " + CTRL + prior", hl.dsp.window.move({ workspace = "r-1" }))
       hl.bind(mod .. " + CTRL + next", hl.dsp.window.move({ workspace = "r+1" }))
-      hl.bind(mod .. " + CTRL + mouse_up", hl.dsp.window.move({ workspace = "r+1" }))
-      hl.bind(mod .. " + CTRL + mouse_down", hl.dsp.window.move({ workspace = "r-1" }))
+      hl.bind(mod .. " + CTRL + mouse_down", hl.dsp.window.move({ workspace = "r+1" }))
+      hl.bind(mod .. " + CTRL + mouse_up", hl.dsp.window.move({ workspace = "r-1" }))
 
       -- workspace switching (numbers -> workspaces 1-9)
       local workspace_keys = {
