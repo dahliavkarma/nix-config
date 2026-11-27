@@ -45,16 +45,14 @@
       src = pkgs.zsh-completions.src;
     }
     {
-      name = pkgs.zsh-command-time.pname;
-      src = pkgs.zsh-command-time.src;
-    }
-    {
       name = pkgs.zsh-fzf-tab.pname;
-      src = pkgs.zsh-fzf-tab.src;
+      src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+      file = "fzf-tab.plugin.zsh";
     }
     {
       name = pkgs.zsh-nix-shell.pname;
       src = pkgs.zsh-nix-shell.src;
+      file = "nix-shell.plugin.zsh";
     }
     {
       name = pkgs.zsh-z.pname;
