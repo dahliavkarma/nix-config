@@ -61,9 +61,10 @@ in
 
   environment.sessionVariables = {
     JACK_32_BIT = [ "${pkgs.pkgsi686Linux.pipewire.jack}/lib" ];
-    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = 1;
-    __GL_SHADER_DISK_CACHE = 1;
-    __GL_SHADER_DISK_CACHE_SIZE = 100000000000;
+    # NVIDIA-only (no effect on the current AMD card); uncomment if switching to an NVIDIA GPU
+    # __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = 1;
+    # __GL_SHADER_DISK_CACHE = 1;
+    # __GL_SHADER_DISK_CACHE_SIZE = 100000000000;
   };
 
 }

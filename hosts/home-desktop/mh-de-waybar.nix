@@ -91,7 +91,7 @@ in {
           format = "{:%F  %A  %R  W%V}";
         };
         "hyprland/window" = {
-          "seperate-outputs" = true;
+          "separate-outputs" = true;
         };
       };
       bottomBar= {
