@@ -13,4 +13,8 @@
     ./m-webdav.nix
   ];
   programs.starship.presets = [ "no-nerd-font" ];
+
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=-1
+  '';
 }

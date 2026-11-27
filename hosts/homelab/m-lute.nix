@@ -5,7 +5,7 @@
 {
   virtualisation.oci-containers.containers."lute-container" = {
     image = "jzohrab/lute3:latest";
-    ports = [ "5001:5001" ];
+    ports = [ "127.0.0.1:5001:5001" ];
     volumes = [
       "/home/${username}/lute/data:/lute_data"
       "/mnt/backup/lute:/lute_backup"
@@ -17,7 +17,7 @@
       extraConfig = ''
         bind tailscale/lute
         tailscale_auth
-        reverse_proxy localhost:5001
+        reverse_proxy 127.0.0.1:5001
       '';
     };
   };

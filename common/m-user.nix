@@ -6,6 +6,21 @@
   username,
   ...
 }:
+let
+  # ssh login keys; for other ssh settings, see m-network.nix and mh-shell.nix
+  sshKeys = {
+    home-desktop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEMK4Kys6A3fzzJIyQ9yQWC+obkrbvonksO0CXrYswc home-desktop";
+    homelab = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFSjy+wxbw/FQcivZkoHW61GB7gCufW4HAo0Gsv79rP homelab";
+    tablet = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPb/SePBsIOqh5q77K8kitFsVRN4DV9vcDPT5f0T6KP tablet";
+  };
+  sshAuthorizedFrom = {
+    home-desktop = [ "tablet" ];
+    homelab = [
+      "home-desktop"
+      "tablet"
+    ];
+  };
+in
 {
 
   # user and groups
@@ -14,12 +29,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     home = "/home/${username}";
-    openssh.authorizedKeys.keys = [
-      # ssh login keys; for other ssh settings, see m-network.nix and mh-shell.nix
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEMK4Kys6A3fzzJIyQ9yQWC+obkrbvonksO0CXrYswc home-desktop"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFSjy+wxbw/FQcivZkoHW61GB7gCufW4HAo0Gsv79rP homelab"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPb/SePBsIOqh5q77K8kitFsVRN4DV9vcDPT5f0T6KP tablet"
-    ];
+    openssh.authorizedKeys.keys = map (name: sshKeys.${name}) (sshAuthorizedFrom.${hostname} or [ ]);
   };
   nix.settings.allowed-users = [ "@wheel" ];
   security.sudo.execWheelOnly = true;

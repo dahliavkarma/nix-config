@@ -13,7 +13,7 @@
     ];
     ports = [
       # Forward the Nextcloud admin interface to port 8080
-      "8080:8080"
+      "127.0.0.1:8080:8080"
       # Port 11000 is not explicitly forwarded here. NextCloud spawns new containers that forward on that port.
     ];
     volumes = [
@@ -24,8 +24,7 @@
     environment = {
       # Set the port for the Nextcloud main interface, we will forward port 443 to this port in Caddy
       APACHE_PORT = "11000";
-      # Bind to all interfaces
-      APACHE_IP_BINDING = "0.0.0.0";
+      APACHE_IP_BINDING = "127.0.0.1";
       # We will use Caddy for reverse proxying and HTTPS, so we can skip domain validation
       SKIP_DOMAIN_VALIDATION = "true";
     };
@@ -37,7 +36,7 @@
       extraConfig = ''
         bind tailscale/nextcloud
         tailscale_auth
-        reverse_proxy localhost:11000
+        reverse_proxy 127.0.0.1:11000
       '';
     };
     # This will be the location where we will access Nextcloud's installation and admin panel
@@ -46,7 +45,7 @@
       extraConfig = ''
         bind tailscale/nextcloud-admin
         tailscale_auth
-        reverse_proxy https://localhost:8080 {
+        reverse_proxy https://127.0.0.1:8080 {
             transport http {
                 tls_insecure_skip_verify
             }
