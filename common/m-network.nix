@@ -21,7 +21,7 @@
   };
   networking.nameservers = [
     "45.90.28.0#2cc1cb.dns.nextdns.io"
-    "a207:28c0::#2cc1cb.dns.nextdns.io"
+    "2a07:a8c0::#2cc1cb.dns.nextdns.io"
   ];
 
   # ssh daemon
