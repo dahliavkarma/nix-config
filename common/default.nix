@@ -5,6 +5,7 @@
 {
   imports = [
     ./m-boot.nix # most everything related to booting the system
+    ./m-claude.nix # claude code managed settings
     ./m-network.nix
     ./m-region.nix # time, locale, keyboard, etc.
     ./m-secrets.nix # sops-nix related settings

@@ -61,7 +61,7 @@
       else
         exit 0
       fi
-      curl -fsS --retry 10 --retry-all-errors --retry-delay 30 \
+      curl -fsS -o /dev/null --retry 10 --retry-all-errors --retry-delay 30 \
         -H "Title: homelab backup disk" -H "Priority: high" -H "Tags: warning" \
         -d "$problem" "https://ntfy.sh/$(cat ${config.sops.secrets."server/ntfy/topic".path})"
       exit 1
@@ -72,7 +72,7 @@
     path = [ pkgs.curl ];
     scriptArgs = "%i";
     script = ''
-      curl -fsS --retry 10 --retry-all-errors --retry-delay 30 \
+      curl -fsS -o /dev/null --retry 10 --retry-all-errors --retry-delay 30 \
         -H "Title: homelab: $1 failed" -H "Priority: high" -H "Tags: warning" \
         -d "Details: journalctl -u $1" "https://ntfy.sh/$(cat ${config.sops.secrets."server/ntfy/topic".path})"
     '';
