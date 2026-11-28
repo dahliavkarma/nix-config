@@ -1,7 +1,6 @@
 keys:
   - &desktop-yubikey-1 age1yubikey1q0e4mc5sevmp5mqc3ad7p0exqt8ctsud5j4plsksxljaywh5dn927y7j6y6
   - &desktop-yubikey-2 age1yubikey1qf5pkn67guv6tgdepum84c7gfsmevfqjl0jjdphw2927ndns4l5ggf4mma5
-  - &home-desktop age19ktz9a3tgwkdmqcpv6l92uv03qvts79ttg4vsfmgp5yhzm4nksnqv3d0nh
   - &homelab age1guwxs7g4jgs7ypf70mjrse53ex8nrpl97569uhfed8ta4q7c5cdssxqrpg
 creation_rules:
   - path_regex: secrets\.yaml$
@@ -9,5 +8,4 @@ creation_rules:
       - age:
           - *desktop-yubikey-1
           - *desktop-yubikey-2
-          - *home-desktop
           - *homelab
