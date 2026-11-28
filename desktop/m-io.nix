@@ -4,6 +4,12 @@
   pkgs,
   ...
 }:
+let
+  # 1 s of a 20 Hz tone at -40 dB: inaudible, but not digital silence
+  wakeTone = pkgs.runCommand "wake-audio.wav" { nativeBuildInputs = [ pkgs.sox ]; } ''
+    sox -n -r 48000 -c 2 -b 16 $out synth 1 sine 20 gain -40
+  '';
+in
 {
 
   # enable the X11 windowing system, needed for wayland too
@@ -47,7 +53,7 @@
       }
     ];
   };
-  # outputs still start out suspended, so wake them once with half a second of silence
+  # outputs start out suspended and the monitor stays muted on pure silence, so wake both at login
   systemd.user.services.wake-audio-output = {
     description = "Wake audio outputs so the first short sound is not swallowed";
     after = [ "wireplumber.service" ];
@@ -67,7 +73,7 @@
         wpctl inspect @DEFAULT_AUDIO_SINK@ > /dev/null 2>&1 && break
         sleep 1
       done
-      head -c 96000 /dev/zero | pw-play --raw -
+      pw-play ${wakeTone}
     '';
   };
 
