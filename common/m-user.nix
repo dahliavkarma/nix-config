@@ -1,12 +1,22 @@
 {
+  config,
   hostname,
   inputs,
+  lib,
   pkgs,
   stateVersion,
   username,
   ...
 }:
 let
+  inSshSession = pkgs.writeShellScript "in-ssh-session" ''
+    session() { ${pkgs.systemd}/bin/loginctl show-session self --value -p "$1" 2>/dev/null; }
+    [ "$(session Service)" = sshd ] && [ "$(session Remote)" = yes ] || exit 1
+    case "$(session State)" in
+      active | online) exit 0 ;;
+      *) exit 1 ;;
+    esac
+  '';
   # ssh login keys; for other ssh settings, see m-network.nix and mh-shell.nix
   sshKeys = {
     desktop-yubikey-1 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPcRDK+1ieUpxx7cp/ZXmQlgB0FA+JeD/OBIdRqYEbjLAAAABHNzaDo= desktop-yubikey-1";
@@ -51,6 +61,21 @@ in
     '';
   security.pam.rssh.enable = true;
   security.pam.services.sudo.rssh = true;
+  security.pam.services.sudo.rules.auth.ssh-session = {
+    order = config.security.pam.services.sudo.rules.auth.rssh.order - 100;
+    control = "sufficient";
+    modulePath = "${config.security.pam.package}/lib/security/pam_exec.so";
+    args = [
+      "quiet"
+      "${inSshSession}"
+    ];
+  };
+  assertions = [
+    {
+      assertion = lib.all (lib.hasPrefix "sk-") config.users.users.${username}.openssh.authorizedKeys.keys;
+      message = "openssh.authorizedKeys.keys may only contain security keys (sk-*)";
+    }
+  ];
 
   # yubikey login (pam_u2f)
   security.pam.services = {
