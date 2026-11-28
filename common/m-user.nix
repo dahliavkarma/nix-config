@@ -9,15 +9,21 @@
 let
   # ssh login keys; for other ssh settings, see m-network.nix and mh-shell.nix
   sshKeys = {
-    home-desktop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEMK4Kys6A3fzzJIyQ9yQWC+obkrbvonksO0CXrYswc home-desktop";
-    homelab = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFSjy+wxbw/FQcivZkoHW61GB7gCufW4HAo0Gsv79rP homelab";
-    tablet = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPb/SePBsIOqh5q77K8kitFsVRN4DV9vcDPT5f0T6KP tablet";
+    desktop-yubikey-1 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPcRDK+1ieUpxx7cp/ZXmQlgB0FA+JeD/OBIdRqYEbjLAAAABHNzaDo= desktop-yubikey-1";
+    desktop-yubikey-2 = "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBPJK6/hWmBB2qqXhN37W/eKnKyAg2e8nrKDrZzg+IEcta+1IwjYU8BRAo4Pwyqmi36WMj1Fftbb/9YuVAViOzcsAAAAEc3NoOg== desktop-yubikey-2";
+    tablet-yubikey-1 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINQC8H/d9tp6XpYpTQgc9YgTiB9OLOTPVeF4rwo+4k5VAAAABHNzaDo= tablet-yubikey-1";
+    tablet-yubikey-2 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAII1rU6jScYGRIR96bmirsKD8/A24T+V9W5HaOlOoO07lAAAABHNzaDo= tablet-yubikey-2";
   };
   sshAuthorizedFrom = {
-    home-desktop = [ "tablet" ];
+    home-desktop = [
+      "tablet-yubikey-1"
+      "tablet-yubikey-2"
+    ];
     homelab = [
-      "home-desktop"
-      "tablet"
+      "desktop-yubikey-1"
+      "desktop-yubikey-2"
+      "tablet-yubikey-1"
+      "tablet-yubikey-2"
     ];
   };
 in
@@ -43,7 +49,8 @@ in
       # never time out the password prompt (default is 5 minutes)
       Defaults passwd_timeout=0
     '';
-  security.pam.sshAgentAuth.enable = true;
+  security.pam.rssh.enable = true;
+  security.pam.services.sudo.rssh = true;
 
   # yubikey login (pam_u2f)
   security.pam.services = {
