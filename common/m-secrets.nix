@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     sops
+    age-plugin-yubikey
   ];
 
   sops = {
