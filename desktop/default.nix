@@ -11,6 +11,7 @@
     ./m-kde.nix
     ./m-looks.nix
     ./m-remap.nix
+    ./m-yubikey.nix # touch notifications
     # ./m-work.nix
   ];
   programs.localsend.enable = true; # firewall is opened automatically

@@ -39,6 +39,36 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # never suspend outputs: an HDMI monitor takes a moment to wake up and swallows short sounds like bells
+    wireplumber.extraConfig."51-no-suspend"."monitor.alsa.rules" = [
+      {
+        matches = [ { "node.name" = "~alsa_output.*"; } ];
+        actions.update-props."session.suspend-timeout-seconds" = 0;
+      }
+    ];
+  };
+  # outputs still start out suspended, so wake them once with half a second of silence
+  systemd.user.services.wake-audio-output = {
+    description = "Wake audio outputs so the first short sound is not swallowed";
+    after = [ "wireplumber.service" ];
+    partOf = [ "wireplumber.service" ];
+    wantedBy = [ "wireplumber.service" ];
+    path = with pkgs; [
+      coreutils
+      pipewire
+      wireplumber
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      for _ in $(seq 30); do
+        wpctl inspect @DEFAULT_AUDIO_SINK@ > /dev/null 2>&1 && break
+        sleep 1
+      done
+      head -c 96000 /dev/zero | pw-play --raw -
+    '';
   };
 
   security.sudo = {
